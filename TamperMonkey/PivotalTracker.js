@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pivotal select count
 // @namespace    https://www.pivotaltracker.com/
-// @version      0.10
+// @version      0.11
 // @description  Output the total of point selected
 // @author       Gabriel Girard
 // @match        https://www.pivotaltracker.com/*
@@ -105,7 +105,7 @@ $.getReleaseNote = function() {
     var stories = [];
     getFeature().children('.name').each(function(){
         var story = {name:"", prd:"", id:""};
-        if($(this).children('.labels').children('a:contains("alpha")')) {
+        if($(this).children('.labels').children('a:contains("alpha")').lenght > 0) {
             alphaText = ' - ALPHA';
         } else {
             alphaText = '';
