@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pivotal Tracker Enhanced
 // @namespace    https://www.pivotaltracker.com/
-// @version      0.29
+// @version      0.30
 // @description  Pivotal Tracker enhanced for Omnimed
 // @author       Gabriel Girard
 // @match        https://www.pivotaltracker.com/*
@@ -36,6 +36,7 @@ $( document ).ready(function() {
     $("<style type='text/css'> .shadowIcon:before{ background-image:url(https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/TamperMonkey/image/shadow.png) !important;} </style>").appendTo("head");
     $("<style type='text/css'> .onAirIcon:before{ background-image:url(https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/TamperMonkey/image/onair.png) !important;} </style>").appendTo("head");
     $("<style type='text/css'> .invalidStory .preview { background-color: #B8860B !important;} </style>").appendTo("head");
+    $("<style type='text/css'> .labelNeed { background-color: red !important; color: white !important; border-radius: 5px ; padding: 0px 5px 0px 5px; margin-right: 2px; } </style>").appendTo("head");
 });
 
 function updateIcons() {
@@ -55,6 +56,10 @@ function updateFlyoverIcons() {
 function validateStories() {
     /* Validate that all stories have a release tag */
 	$('.story.delivered, .story.finished, .story.started').not(':has(a:contains("' + getReleaseName() + '")), :has(a:contains("patch"))').addClass('invalidStory');
+}
+
+function highlightLabelsNeedSomething() {
+    $( "a.label:contains('needs')" ).addClass('labelNeed');
 }
 
 
@@ -108,6 +113,7 @@ $( document ).bind("ajaxSuccess",function(event, xhr, settings) {
         });
         updateIcons();
         validateStories();
+        highlightLabelsNeedSomething();
     }
 });
 
