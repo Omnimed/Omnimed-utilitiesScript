@@ -795,6 +795,9 @@ $.getBroadcastNote = function() {
         var chore = {name:"", broadcast:"", ep:"", id:"", version: ""};
         chore.id = $(this).parent().parent().attr("data-id");
         chore.broadcast = capitalizeFirstLetter($(this).children('.labels').children('a:contains("broadcast")').first().text());
+        if (chore.broadcast.indexOf(",") > -1){
+            chore.broadcast = chore.broadcast.substring(0,chore.broadcast.indexOf(","));
+        }
         chore.name = $(this).children('.story_name').text();
         chore.ep = $(this).children('.labels').children('a:contains("ep -")').first().text();
         if (chore.ep === "") {
@@ -827,6 +830,9 @@ $.getBroadcastNote = function() {
         var bug = {name:"", broadcast:"", ep:"", id:"", version:""};
         bug.id = $(this).parent().parent().attr("data-id");
         bug.broadcast = capitalizeFirstLetter($(this).children('.labels').children('a:contains("broadcast")').first().text());
+        if (bug.broadcast.indexOf(",") > -1){
+            bug.broadcast = bug.broadcast.substring(0,bug.broadcast.indexOf(","));
+        }
         bug.name = $(this).children('.story_name').text();
         bug.ep = $(this).children('.labels').children('a:contains("ep -")').first().text();
         if (bug.ep === "") {
