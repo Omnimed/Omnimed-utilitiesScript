@@ -769,13 +769,14 @@ $.getBroadcastNote = function() {
         } else if (story.ep.indexOf(",") > -1) {
             story.ep = story.ep.substring(0,story.ep.indexOf(","));
         }
-        stories.push(story);
-
+        
         story.version = capitalizeFirstLetter($(this).children('.labels').children('a:contains("v -")').first().text());
          if (story.version.indexOf(",") > -1){
             story.version = story.version.substring(0,story.version.indexOf(","));
         }
 
+        stories.push(story);
+        
         if (story.broadcast === "") {
             togglz.push(story);
             if (story.version != "") {
@@ -791,7 +792,7 @@ $.getBroadcastNote = function() {
 
     var chores = [];
     getChore().children('.name').each(function(){
-        var chore = {name:"", broadcast:"", ep:"", id:""};
+        var chore = {name:"", broadcast:"", ep:"", id:"", version: ""};
         chore.id = $(this).parent().parent().attr("data-id");
         chore.broadcast = capitalizeFirstLetter($(this).children('.labels').children('a:contains("broadcast")').first().text());
         chore.name = $(this).children('.story_name').text();
@@ -801,9 +802,18 @@ $.getBroadcastNote = function() {
         } else if (chore.ep.indexOf(",") > -1) {
             chore.ep = chore.ep.substring(0,chore.ep.indexOf(","));
         }
+        
+        chore.version = capitalizeFirstLetter($(this).children('.labels').children('a:contains("v -")').first().text());
+         if (chore.version.indexOf(",") > -1){
+            chore.version = chore.version.substring(0,chore.version.indexOf(","));
+        }
+        
         chores.push(chore);
         if (chore.broadcast === "") {
             togglz.push(chore);
+            if (chore.version != "") {
+                version.push(chore.version);
+            }
         } else {
             broadcasts.push(chore.broadcast);
         }
@@ -814,7 +824,7 @@ $.getBroadcastNote = function() {
 
     var bugs = [];
     getBug().children('.name').each(function(){
-        var bug = {name:"", broadcast:"", ep:"", id:""};
+        var bug = {name:"", broadcast:"", ep:"", id:"", version:""};
         bug.id = $(this).parent().parent().attr("data-id");
         bug.broadcast = capitalizeFirstLetter($(this).children('.labels').children('a:contains("broadcast")').first().text());
         bug.name = $(this).children('.story_name').text();
@@ -823,11 +833,20 @@ $.getBroadcastNote = function() {
             bug.ep ="ep - autre";
         } else if (bug.ep.indexOf(",") > -1) {
             bug.ep = bug.ep.substring(0,bug.ep.indexOf(","));
+        }       
+        
+        bug.version = capitalizeFirstLetter($(this).children('.labels').children('a:contains("v -")').first().text());
+         if (bug.version.indexOf(",") > -1){
+            bug.version = bug.version.substring(0,bug.version.indexOf(","));
         }
+        
         $(this).children('.labels.pre').children('a:contains("bugprod")').each(function() {
             bugs.push(bug);
             if (bug.broadcast === "") {
                 togglz.push(bug);
+                if (bug.version != "") {
+                    version.push(bug.version);
+                }
             } else {
                 broadcasts.push(bug.broadcast);
             }
