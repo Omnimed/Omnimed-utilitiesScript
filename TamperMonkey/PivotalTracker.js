@@ -402,8 +402,7 @@ function update_output() {
 }
 
 $.getReleaseNote = function() {
-    var currentDate = new Date();
-    var releaseDate = currentDate.getFullYear() + "-" + currentDate.getMonth() + "-" + currentDate.getDay() + " @ 23h00";
+    var releaseDate = new Date().toISOString().slice(0, 10) + " @ 23h30";
     var releaseNote = "Date de déploiement visée : " + releaseDate + "\n";
     releaseNote += "Version de chrome supportée : <https://sites.google.com/a/chromium.org/chromedriver/downloads> \n\n";
     var eps = [];
@@ -772,14 +771,14 @@ $.getBroadcastNote = function() {
         } else if (story.ep.indexOf(",") > -1) {
             story.ep = story.ep.substring(0,story.ep.indexOf(","));
         }
-        
+
         story.version = capitalizeFirstLetter($(this).children('.labels').children('a:contains("v -")').first().text());
          if (story.version.indexOf(",") > -1){
             story.version = story.version.substring(0,story.version.indexOf(","));
         }
 
         stories.push(story);
-        
+
         if (story.broadcast === "") {
             togglz.push(story);
             if (story.version != "") {
@@ -808,12 +807,12 @@ $.getBroadcastNote = function() {
         } else if (chore.ep.indexOf(",") > -1) {
             chore.ep = chore.ep.substring(0,chore.ep.indexOf(","));
         }
-        
+
         chore.version = capitalizeFirstLetter($(this).children('.labels').children('a:contains("v -")').first().text());
          if (chore.version.indexOf(",") > -1){
             chore.version = chore.version.substring(0,chore.version.indexOf(","));
         }
-        
+
         chores.push(chore);
         if (chore.broadcast === "") {
             togglz.push(chore);
@@ -842,13 +841,13 @@ $.getBroadcastNote = function() {
             bug.ep ="ep - autre";
         } else if (bug.ep.indexOf(",") > -1) {
             bug.ep = bug.ep.substring(0,bug.ep.indexOf(","));
-        }       
-        
+        }
+
         bug.version = capitalizeFirstLetter($(this).children('.labels').children('a:contains("v -")').first().text());
          if (bug.version.indexOf(",") > -1){
             bug.version = bug.version.substring(0,bug.version.indexOf(","));
         }
-        
+
         $(this).children('.labels.pre').children('a:contains("bugprod")').each(function() {
             bugs.push(bug);
             if (bug.broadcast === "") {
