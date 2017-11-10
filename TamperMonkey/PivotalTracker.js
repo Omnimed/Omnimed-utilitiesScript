@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Pivotal Tracker Enhanced
 // @namespace    https://www.pivotaltracker.com/
-// @version      0.39
+// @version      0.40
 // @description  Pivotal Tracker enhanced for Omnimed
 // @author       Omnimed
 // @match        https://www.pivotaltracker.com/*
@@ -402,7 +402,10 @@ function update_output() {
 }
 
 $.getReleaseNote = function() {
-    var releaseNote = "Date de déploiement visée : \nVersion de chrome supportée : \n\n";
+    var currentDate = new Date();
+    var releaseDate = currentDate.getFullYear() + "-" + currentDate.getMonth() + "-" + currentDate.getDay() + " @ 23h00";
+    var releaseNote = "Date de déploiement visée : " + releaseDate + "\n";
+    releaseNote += "Version de chrome supportée : <https://sites.google.com/a/chromium.org/chromedriver/downloads> \n\n";
     var eps = [];
     var produits = [];
     var stories = [];
