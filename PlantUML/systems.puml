@@ -1,0 +1,33 @@
+' #######################
+' System Definitions
+' #######################
+
+!include technologies.puml
+
+!define SYS_OMNIMED System(omnimed, "Omnimed", "DME pour les intervenants de la santé et secrétaires médicales")
+
+!define SYS_EXT_ADT System_Ext(adt, "Autres ADT", "ADT d'autres DME certifés")
+!define SYS_EXT_ADTDCI System_Ext(adtdci, "Systèmes ADT et DCI d’établissement de santé publique", "Systèmes ADT et DCI d’établissement de santé publique de centre hospitalier ou d'UMF")
+!define SYS_EXT_CONCORD_FAX System_Ext(concordfax, "ConcordFax", "Plateforme d'envoi de FAX")
+!define SYS_EXT_CNESST System_Ext(cnesst, "CNESST", "Système de réception des documents électroniques")
+!define SYS_EXT_DSQ System_Ext(dsq, "DSQ", "SQIM, SQIL, SQII")
+!define SYS_EXT_E_CLINIBASE System_Ext(eclinibase, "E-Clinibase", "Système de gestion et coordination d'activités clinico-administratives")
+!define SYS_EXT_FACT System_Ext(fact, "Systèmes de facturation RAMQ", "Systèmes de facturation RAMQ tel que XActe, SoftInformatique ou Fmp")
+!define SYS_EXT_LABO System_Ext(labo, "Systèmes de laboratoires et d’imageries", "Laboratoires des différents CSSS, ainsi que les engins SIDER des différentes régions")
+!define SYS_EXT_PRESCRIBEIT System_Ext(prescribeit, "PrescribeIT", "Système de transmission de prescriptions électroniques")
+!define SYS_EXT_RAMQ System_Ext(ramq, "RAMQ", "Liste des inscriptions GMF")
+!define SYS_EXT_RDV System_Ext(rdv, "Systèmes de prise de rendez-vous", "Systèmes de prise de rendez-vous tel que PetalBooking, Navatech, Chronometriq, Tap Medical, Bonjour Santé")
+!define SYS_EXT_RVSQ System_Ext(rvsq, "RVSQ", "Rendez-vous santé Québec")
+!define SYS_EXT_SAFIR System_Ext(safir, "SAFIR", "Plateforme de formulaire de requête régionale électronique de l'APSS permettant de faire le lien entre les DME et les CRDS")
+!define SYS_EXT_SENDGRID System_Ext(sendgrid, "SENDGRID", "Plateforme d'envoi de COURRIEL")
+!define SYS_EXT_SRFAX System_Ext(srfax, "SRFAX", "Plateforme d'envoi de FAX")
+!define SYS_EXT_TWILIO System_Ext(twilio, "TWILIO", "Plateforme d'envoi de SMS, VOIX, etc.")
+!define SYS_EXT_VIGI System_Ext(vigilance, "Vigilance Santé", "Base de donnée de médicaments et analyse d'interaction")
+!define SYS_EXT_INTEGRATION_SANTE System_Ext(integrationsante, "Intégration Santé", "Intégration de systèmes et exploitation d'engins d'interfaces")
+!define SYS_EXT_CDL System_Ext(cdllabs, "Laboratoires CDL", "Système externe produisant les résultats de laboratoires des laboratoires CDL sous format HL7v2")
+
+!define SYS_CAS System(cas, "CAS", "UBUNTU_14 , TOMCAT_7, CAS_35")
+!define SYS_ACTIVE_DIRECTORY System(ad, "Active Directory", "WINDOWS_SERVER_2012")
+!define SYS_ENGINE System(engine, "Engine", "VIRGO_SERVER, VIRGO_STACK")
+!define SYS_ORACLE System(oracle_database, "Base de données Oracle", "ORACLE_LINUX, ORACLE_10")
+!define SYS_POSTGRES System(postgres_database, "Base de données Postgresql", "UBUNTU_14, POSTGRES_9")

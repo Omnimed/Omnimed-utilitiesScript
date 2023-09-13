@@ -1,0 +1,20 @@
+!include c4_context.puml
+
+' Layout
+' ##################################
+
+!definelong LAYOUT_FR_WITH_LEGEND
+hide stereotype
+legend right
+|=              |= Type |
+|<PERSON_BG_COLOR>      | personne |
+|<EXTERNAL_PERSON_BG_COLOR>      | personne externe |
+|<SYSTEM_BG_COLOR>   | système |
+|<EXTERNAL_SYSTEM_BG_COLOR>      | système externe |
+endlegend
+!enddefinelong
+
+' Boundaries
+' ##################################
+
+!define System_Boundary(e_alias, e_label) rectangle "==e_label [Système]" <<boundary>> as e_alias

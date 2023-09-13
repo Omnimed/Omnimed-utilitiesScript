@@ -1,0 +1,13 @@
+' #######################
+' Person Definitions
+' #######################
+
+!include technologies.puml
+
+!define PERSON_ADMIN Person(admin, "Administrateur du système", "[Personel d'Omnimed - Gestionnaire]")
+!define PERSON_USER Person(user, "Utilisateur du système", "[Médecin ou secrétaire médicale]")
+!define PERSON_SEC Person(sec, "Utilisateur du système", "[secrétaire médicale]")
+!define PERSON_PROF Person(prof, "Utilisateur du système", "[Professionnel de la santé]")
+!define PERSON_MED Person(med, "Utilisateur du système", "[Médecin]")
+!define PERSON_PATIENT Person(patient, "Utilisateur", "[Patient]")
+!define PERSON_ARCHIVIST Person(archivist, "Utilisateur du système", "[Archiviste médical]")

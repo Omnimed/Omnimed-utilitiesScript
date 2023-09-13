@@ -1,0 +1,9 @@
+!definelong COLOR_LAYOUT
+hide stereotype
+legend top right
+    |=      --> |= Type |
+    |<back:green>                 </back>| SUCCESS |
+    |<back:orange>                 </back>| ASSUMED UNTESTED SUCCESS |
+    |<back:red>                 </back>| ERROR  |
+endlegend
+!enddefinelong

@@ -1,0 +1,44 @@
+' ##########################################
+' Technologies / Framework definitions
+' ##########################################
+
+!define ACTIVEMQ Apache Activemq
+!define ALPINE_LINUX Alpine Linux
+!define APACHE_2 Apache 2.2
+!define BUSYBOX_LINUX Busybox Linux
+!define CAS_35 Apereo CAS
+!define CENTOS CentOs
+!define CONNECT_TO Se connecte à
+!define DELPHI_7 Borland Delphi 7
+!define DOT_NET_45 .NETFramework v4.5
+!define ELASTICSEARCH Elasticsearch
+!define FREEBSD FreeBSD
+!define FUELPHP FuelPHP
+!define HAPROXY_17 Haproxy
+!define HAPROXY_2212 Haproxy 2.2.12
+!define HIBERNATE_4 Hibernate
+!define HTTPD HTTPD
+!define JASPER_SERVER Jasper Server 7.5
+!define KARAF_4 Osgi Karaf Server
+!define ORACLE_LINUX Oracle Linux
+!define ORACLE_10 Oracle 10g
+!define PFSENSE_10 PFSense
+!define POSTGRES_9 Postgresql 9.3
+!define POSTGRES_11 Postgresql 11
+!define RABBITMQ RabbitMq
+!define SPRINGBOOT SpringBoot, Tomcat
+!define SPRINGBOOT2 Springboot2
+!define SPRINGBOOT_STACK Springboot2, Tomcat 9, Jdk 11
+!define TOMCAT_6 Apache Tomcat 6
+!define TOMCAT_7 Apache Tomcat 7
+!define TOMCAT_8 Apache Tomcat 8
+!define UBUNTU_12 Ubuntu Linux 12
+!define UBUNTU_14 Ubuntu Linux 14
+!define UBUNTU_18 Ubuntu Linux 18
+!define VIRGO_36 Osgi Virgo Server
+!define VIRGO_CONTAINER ALPINE_LINUX, VIRGO_36
+!define VIRGO_SERVER UBUNTU_18, VIRGO_36
+!define VIRGO_STACK JDK 1.7, HIBERNATE_4, Spring
+!define VIRGO_HR_STACK VIRGO_STACK, Primefaces
+!define WINDOWS_SERVER_2003 Windows Server 2003
+!define WINDOWS_SERVER_2012 Windows Server 2012R2
