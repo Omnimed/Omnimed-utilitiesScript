@@ -2,7 +2,7 @@
 ' Container Definitions
 ' #######################
 
-!include technologies.puml
+!include https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/PlantUML/technologies.puml
 
 !define CONTAINER_API_ACTIONLINK Container(actionLinkApi, "API ActionLink", "SPRINGBOOT2", "API de création/accès de liens")
 !define CONTAINER_API_ADMINISTRATIVE Container(administrativeApi, "API Administrative", "SPRINGBOOT2", "API de gestion de données administratives")

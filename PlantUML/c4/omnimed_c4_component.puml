@@ -1,5 +1,5 @@
-!include c4_component.puml
-!include omnimed_c4_container.puml
+!include https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/PlantUML/c4/c4_component.puml
+!include https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/PlantUML/c4/omnimed_c4_container.puml
 
 ' Layout
 ' ##################################

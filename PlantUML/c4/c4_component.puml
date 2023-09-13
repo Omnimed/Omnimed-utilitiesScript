@@ -1,5 +1,5 @@
 ' Copy of https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
-!include c4_container.puml
+!include https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/PlantUML/c4/c4_container.puml
 ' uncomment the following line and comment the first to use locally
 ' !include C4_Container.puml
 

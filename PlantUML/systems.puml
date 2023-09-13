@@ -2,7 +2,7 @@
 ' System Definitions
 ' #######################
 
-!include technologies.puml
+!include https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/PlantUML/technologies.puml
 
 !define SYS_OMNIMED System(omnimed, "Omnimed", "DME pour les intervenants de la santé et secrétaires médicales")
 
