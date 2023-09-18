@@ -49,6 +49,7 @@
 !define CONTAINER_FRONTEND_HEALTHRECORD_ACTION_LOG Container(frontendHealthrecordActionLog, "frontendHealthrecordActionLog", "Angular", "Application frontend Angular")
 !define CONTAINER_FRONTEND_HEALTHRECORD_FORM_SELECTION Container(frontendHealthrecordFormSelection, "frontendHealthrecordActionLog", "Angular", "Application frontend Angular")
 !define CONTAINER_FRONTEND_PRESCRIBEIT Container(frontendPrescribeIt, "frontendPrescribeIt", "Angular", "Application frontend Angular")
+!define CONTAINER_FRONTEND_RESOURCE_APPOINTMENT_MODULE_USER_CONFIGURATION_APPLICATION_CONTROLLER Container(appointmentModuleUserConfigurationApplicationController, "AppointmentModuleUserConfigurationApplicationController.js", "Javascript", "Controlleur entre iFrame Angular et frontend legacy pour communications liées à la configuration utilisateur")
 !define CONTAINER_FRONTEND_TRANSMISSION Container(frontendTransmission, "frontendTransmission", "Angular", "Application frontend Angular")
 !define CONTAINER_HAPROXY Container(haproxy, "HaProxy", "HAPROXY_2212", "HaProxy")
 !define CONTAINER_HR Container(hr, "Healthrecord", "VIRGO_SERVER, VIRGO_HR_STACK", "Application principale du dossier médicale")
