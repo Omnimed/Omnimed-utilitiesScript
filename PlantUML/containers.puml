@@ -41,6 +41,7 @@
 !define CONTAINER_ENGINE_CNESST_RELAY Container(omnimed_engine_cnesst_relay, "Engine CNESST relay", "SPRINGBOOT", "Relai les rapports médicaux et pièces jointes de la route push CNESST aux services web de la CNESST correspondants.")
 !define CONTAINER_ENGINE_LIVE Container(engine_live, "EngineLive", "VIRGO_SERVER, VIRGO_STACK", "Service de journalisation et d'adaptation de communications live")
 !define CONTAINER_FILE_VALIDATION Container(fileValidation, "File Validation Pod", "clamav", "Pod de validation de fichiers malicieux en utilisant ClamAv")
+!define CONTAINER_FRONTEND_CALENDAR Container(frontendCalendar, "FrontendCalendar", "Angular", "Application frontend Angular")
 !define CONTAINER_FRONTEND_DOCUMENTS_RECEPTION Container(frontendPatientDocumentsReception, "FrontendPatientDocumentsReception", "Angular", "Application frontend Angular affichant la bannière de réception de documents patient.")
 !define CONTAINER_FRONTEND_DOCUMENTS_REVIEW Container(frontendDocumentsReview, "FrontendDocumentsReview", "Angular", "Application frontend Angular")
 !define CONTAINER_FRONTEND_PORTAL Container(frontendPortal, "FrontendPortal", "Angular", "Application frontend Angular")
