@@ -42,7 +42,6 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('AviseurHpn', qa);
 	colorCucumberTagForQA('Cnesst', qa);
 	colorCucumberTagForQA('Contexte', qa);
-	colorCucumberTagForQA('acturation', qa);
 	colorCucumberTagForQA('MaladieChronique', qa);
 	colorCucumberTagForQA('Note', qa);
 	colorCucumberTagForQA('@Notification', qa);
@@ -88,6 +87,7 @@ function colorCucumberTags() {
 
 	//Équipe Médication
 	qa = 'Med';
+	colorCucumberTagForQA('acturation', qa);
 	colorCucumberTagForQA('@DossierAllergie', qa);
 	colorCucumberTagForQA('@DossierActionLogAllergie', qa);
 	colorCucumberTagForQA('@DossierActionLogImmunisation', qa);
