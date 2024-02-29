@@ -11,7 +11,8 @@ $(document).ready(function() {
 	$("<style type='text/css'> .cukeDos { background-color: blue !important; color: white !important; } </style>").appendTo("head");
 	$("<style type='text/css'> .cukeMed { background-color: black !important; color: white !important; } </style>").appendTo("head");
 	$("<style type='text/css'> .cukeReq { background-color: red !important; color: white !important; } </style>").appendTo("head");
-	$("<style type='text/css'> .cukeMad { background-color: green !important; color: white !important; } </style>").appendTo("head");
+	$("<style type='text/css'> .cukeMad { background-color: #D8780D !important; color: white !important; } </style>").appendTo("head");
+	$("<style type='text/css'> .cukePor { background-color: green !important; color: white !important; } </style>").appendTo("head");
 	$("<style type='text/css'> .cukeInt { background-color: darkred !important; color: white !important; } </style>").appendTo("head");
 	$("<style type='text/css'> .cukeAll { background-color: grey !important; color: white !important; } </style>").appendTo("head");
 });
@@ -22,6 +23,7 @@ function colorCucumberTagForQA(tag, qa) {
 		$('.tagname > a:contains(' + tag + ')').removeClass('cukeReq');
 		$('.tagname > a:contains(' + tag + ')').removeClass('cukeMed');
 		$('.tagname > a:contains(' + tag + ')').removeClass('cukeMad');
+		$('.tagname > a:contains(' + tag + ')').removeClass('cukePor');
 		$('.tagname > a:contains(' + tag + ')').removeClass('cukeInt');
 		$('.tagname > a:contains(' + tag + ')').addClass('cuke' + qa);
 	} else {
@@ -76,11 +78,14 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@RecherchePatient', qa);
 	colorCucumberTagForQA('RendezVous', qa);
 	colorCucumberTagForQA('SalleAttente', qa);
-	colorCucumberTagForQA('PortailPatient', qa);
-	colorCucumberTagForQA('PwaElna', qa);
 	colorCucumberTagForQA('Omnidesk', qa);
+
+        //Équipe poratil patient
+	qa = 'Por';
+	colorCucumberTagForQA('AdministrationDemande', qa);
+	colorCucumberTagForQA('Portail', qa);
+	colorCucumberTagForQA('PwaElna', qa);
 	colorCucumberTagForQA('@Aide', qa);
-	colorCucumberTagForQA('Contact', qa);
 	colorCucumberTagForQA('Tache', qa);
 	colorCucumberTagForQA('@Nouvelle', qa);
 	colorCucumberTagForQA('@MenuOmnimed', qa);
@@ -105,6 +110,7 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@Profil', qa);
 	colorCucumberTagForQA('@UProfil', qa);
 	colorCucumberTagForQA('@IProfil', qa);
+	colorCucumberTagForQA('Contact', qa);
 
 	//Équipe Intégration
 	qa = 'Int';
@@ -117,8 +123,8 @@ function colorCucumberTags() {
     	//Pour un tag Outil qui est aussi contenu dans CentreAdmin, je dois le placer après
     	qa = 'Dos';
     	colorCucumberTagForQA('Outil', qa);
-	
-	//All
+
+    //All
 	qa = 'All'
 	colorCucumberTagForQA('@CreationDonnee', qa);
 	colorCucumberTagForQA('Exemple', qa);
