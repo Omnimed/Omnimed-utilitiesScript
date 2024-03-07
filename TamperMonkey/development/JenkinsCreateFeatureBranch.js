@@ -15,7 +15,7 @@
     var currentLength = 0
     var branchNameInput = document.getElementsByName('value')[0];
     var div = document.createElement('div');
-    var maxLength = 37;
+    var maxLength = 38;
 
     branchNameInput.addEventListener("input", updateLength);
 
