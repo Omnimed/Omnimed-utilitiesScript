@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         ActiveMQDlqQueueFiller
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  Automatically attempts to fill in the queue dropdown to replay dlq messages easily and avoid manipulation errors.
+// @version      0.2
+// @description  Print all file names from DLQ
 // @author       Antoine Cloutier
 // @match        http://192.168.254.181:8161/admin/message.jsp*
 // @match        http://192.168.254.3:8161/admin/message.jsp*
@@ -29,6 +29,10 @@ function autofill() {
 
         if (jmsDestinationValue.indexOf('-retry') > -1) {
             jmsDestinationValue = jmsDestinationValue.replace('-retry', '');
+        }
+
+        if (jmsDestinationValue.indexOf('.retry') > -1) {
+            jmsDestinationValue = jmsDestinationValue.replace('.retry', '');
         }
 
         if (jmsDestinationValue.indexOf('.dlq') > -1) {
