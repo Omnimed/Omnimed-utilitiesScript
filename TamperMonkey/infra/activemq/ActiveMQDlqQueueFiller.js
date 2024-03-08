@@ -2,7 +2,7 @@
 // @name         ActiveMQDlqQueueFiller
 // @namespace    http://tampermonkey.net/
 // @version      0.2
-// @description  Print all file names from DLQ
+// @description  Automatically attempts to fill in the queue dropdown to replay dlq messages easily and avoid manipulation errors.
 // @author       Antoine Cloutier
 // @match        http://192.168.254.181:8161/admin/message.jsp*
 // @match        http://192.168.254.3:8161/admin/message.jsp*
