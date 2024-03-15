@@ -13,25 +13,28 @@
     // Function to scan the page
     function scanPageForRegex() {
         setTimeout(function() {
-            const regexPattern = /G-.*\^CIUSSSE-CHUS/g;
-            const bodyText = document.body.innerText;
-            const matches = bodyText.match(regexPattern);
-            const uniqueMatches = {};
-
-            if (matches && matches.length > 0) {
-                matches.forEach(match => {
-                    uniqueMatches[match] = true; // Remove duplicates
-                });
-                var output = "";
-                Object.keys(uniqueMatches).forEach(match => {
-                    output += match + "\n";
-                });
-                console.log(output);
-            } else {
-                console.log("No matches found.");
-            }
+            findTagsByRegex(/G-.*\^CIUSSSE-CHUS(?:.*\^MED-ECHO)?/g);
         }, 30000);
+    }
 
+    function findTagsByRegex(regex) {
+        const bodyText = document.body.innerText;
+        const matches = bodyText.match(regex);
+        const uniqueMatches = {};
+
+        if (matches && matches.length > 0) {
+            matches.forEach(match => {
+                uniqueMatches[match] = true; // Remove duplicates
+            });
+            var output = "";
+            Object.keys(uniqueMatches).forEach(match => {
+                output += match + "\n";
+            });
+            console.log("Matches found for " + regex);
+            console.log(output);
+        } else {
+            console.log("No matches found for " + regex);
+        }
     }
 
     // Run the function when the page has loaded
