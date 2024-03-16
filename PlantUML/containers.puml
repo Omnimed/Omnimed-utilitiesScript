@@ -55,6 +55,7 @@
 !define CONTAINER_FRONTEND_TRANSMISSION Container(frontendTransmission, "frontendTransmission", "Angular", "Application frontend Angular")
 !define CONTAINER_HAPROXY Container(haproxy, "HaProxy", "HAPROXY_2212", "HaProxy")
 !define CONTAINER_HR Container(hr, "Healthrecord", "VIRGO_SERVER, VIRGO_HR_STACK", "Application principale du dossier médicale")
+!define CONTAINER_INTEGRATION_APP_HUB Container(appointementsHubIntegration, "Intégration rendez-vous HUB", "SPRINGBOOT2", "API d'intégration de rendez-vous avec le HUB")
 !define CONTAINER_IMPORT_RESULT Container(result_importer, "Importation des résultats", "WINDOWS_SERVER_2003, DELPHI_7")
 !define CONTAINER_INTERFACES Container(interfaces, "Interfaces", "VIRGO_SERVER, VIRGO_STACK", "Services de traitement en lot")
 !define CONTAINER_JASPER Container(jasperServer, "Jasper Server", "JASPER_SERVER", "Services de traitement en lot")
