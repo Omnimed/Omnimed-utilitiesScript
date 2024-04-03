@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         ActiveMQDlqQueueFiller
 // @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  Automatically attempts to fill in the queue dropdown to replay dlq messages easily and avoid manipulation errors.
+// @version      0.3
+// @description  Print all file names from DLQ
 // @author       Antoine Cloutier
 // @match        http://192.168.254.181:8161/admin/message.jsp*
 // @match        http://192.168.254.3:8161/admin/message.jsp*
@@ -17,15 +17,13 @@
 
 function autofill() {
     if (!queueHasValue()) {
+        let manualMappings = getManualMappings();
         var originalQueue;
-        var url = window.location.href;
-
-        function getUrlParam(name) {
-            var params = new URLSearchParams(url.split('?')[1]);
-            return params.get(name);
-        }
 
         var jmsDestinationValue = getUrlParam('JMSDestination');
+
+        // Keep a copy of the original queue name
+        var jmsDestinationValueCopy = jmsDestinationValue;
 
         if (jmsDestinationValue.indexOf('-retry') > -1) {
             jmsDestinationValue = jmsDestinationValue.replace('-retry', '');
@@ -39,11 +37,26 @@ function autofill() {
             originalQueue = jmsDestinationValue.substring(0, jmsDestinationValue.indexOf('.dlq'));
         }
 
-
         if ($('#queue option[value="' + originalQueue + '"]').length > 0) {
+            $("#queue").val(originalQueue);
+        } else {
+            // Use manual mapping as last resort
+            originalQueue = manualMappings.get(jmsDestinationValueCopy);
             $("#queue").val(originalQueue);
         }
     }
+}
+
+function getManualMappings() {
+    let map = new Map();
+    map.set('emr.integration-clinical-note-push-fhir-gaspesie.request.note.import-retry.0.dlq', 'Consumer.emr-integration-clinical-note-push-fhir-gaspesie-request-note-push-0.VirtualTopic.push.CLINICAL_NOTE');
+
+    return map;
+}
+
+function getUrlParam(name) {
+    var params = new URLSearchParams(window.location.href.split('?')[1]);
+    return params.get(name);
 }
 
 function queueHasValue() {
