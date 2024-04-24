@@ -73,7 +73,6 @@ function colorCucumberTags() {
 
 	 //Équipe Requetes et resultats
 	qa = 'Req';
-	colorCucumberTagForQA('Ramq', qa);
 	colorCucumberTagForQA('Requete', qa);
 	colorCucumberTagForQA('@DossierResultat', qa);
 	colorCucumberTagForQA('@DossierActionLogResultat', qa);
