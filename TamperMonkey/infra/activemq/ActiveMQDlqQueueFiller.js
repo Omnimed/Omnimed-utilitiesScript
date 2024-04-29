@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ActiveMQDlqQueueFiller
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Print all file names from DLQ
 // @author       Antoine Cloutier
 // @match        http://192.168.254.181:8161/admin/message.jsp*
@@ -35,6 +35,10 @@ function autofill() {
 
         if (jmsDestinationValue.indexOf('.dlq') > -1) {
             originalQueue = jmsDestinationValue.substring(0, jmsDestinationValue.indexOf('.dlq'));
+        }
+
+        if (jmsDestinationValue.indexOf('.error') > -1) {
+            originalQueue = jmsDestinationValue.substring(0, jmsDestinationValue.indexOf('.error'));
         }
 
         if ($('#queue option[value="' + originalQueue + '"]').length > 0) {
