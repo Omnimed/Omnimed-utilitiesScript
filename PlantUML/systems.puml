@@ -23,6 +23,7 @@
 !define SYS_EXT_SENDGRID System_Ext(sendgrid, "SENDGRID", "Plateforme d'envoi de COURRIEL")
 !define SYS_EXT_SRFAX System_Ext(srfax, "SRFAX", "Plateforme d'envoi de FAX")
 !define SYS_EXT_STRIPE System_Ext(stripe, "STRIPE", "Système de paiement")
+!define SYS_EXT_TERMINAL System_Ext(terminal, "TERMINAL", "Terminal de paiement par carte")
 !define SYS_EXT_TWILIO System_Ext(twilio, "TWILIO", "Plateforme d'envoi de SMS, VOIX, etc.")
 !define SYS_EXT_VIGI System_Ext(vigilance, "Vigilance Santé", "Base de donnée de médicaments et analyse d'interaction")
 !define SYS_EXT_INTEGRATION_SANTE System_Ext(integrationsante, "Intégration Santé", "Intégration de systèmes et exploitation d'engins d'interfaces")
