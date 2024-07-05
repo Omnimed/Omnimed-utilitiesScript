@@ -15,6 +15,7 @@
 !define SYS_EXT_FACT System_Ext(fact, "Systèmes de facturation RAMQ", "Systèmes de facturation RAMQ tel que XActe, SoftInformatique ou Fmp")
 !define SYS_EXT_HUB System_Ext(hub, "HUB", "Système de hub de rdv")
 !define SYS_EXT_LABO System_Ext(labo, "Systèmes de laboratoires et d’imageries", "Laboratoires des différents CSSS, ainsi que les engins SIDER des différentes régions")
+!define SYS_EXT_NUVEI System_Ext(nuvei, "NUVEI", "Système de payment processing Nuvei")
 !define SYS_EXT_NUVEI_BROADPOS System_Ext(nuvei_broadpos, "NUVEI_BROADPOS_APP", "Application BroadPOS Nuvei Canada")
 !define SYS_EXT_OMNIMED_PAYMENTS System_Ext(omnimed_payments, "OMNIMED_PAYMENTS", "Dashboard des transactions PandaPay/Nuvei d'une clinique")
 !define SYS_EXT_PAXSTORE System_Ext(paxstore, "PAXSTORE", "PAXStore Reseller App")
