@@ -104,6 +104,7 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('Fax', qa);
 	colorCucumberTagForQA('Medication', qa);
 	colorCucumberTagForQA('PrescribeIt', qa);
+	colorCucumberTagForQA('CentreCommunication', qa);
 	colorCucumberTagForQA('CentreTransmission', qa);
 	colorCucumberTagForQA('TransmissionDashboard', qa);
 	colorCucumberTagForQA('@Profil', qa);
