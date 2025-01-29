@@ -92,7 +92,7 @@ function monitorBuild() {
            setLocalStorageItemWithExpiry(storedIsActive, true, 3*60*60*1000); //Expire after 2h
        }
        console.log('refresh incomming');
-       setTimeout(function(){ location.reload(); }, 5000);
+       setTimeout(function(){ location.reload(); }, 30000);
        return;
     }
    sendSlackNotification();
