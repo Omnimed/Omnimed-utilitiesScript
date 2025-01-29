@@ -87,7 +87,6 @@ function monitorBuild() {
     } else if (document.querySelectorAll('[title*=\'En échec\']').length > 0 | document.getElementsByClassName('BasicHeader--failure').length > 0) {
        message = message + 'En échec';
     } else {
-       console.log(document.querySelectorAll('[title*=\'Succès\']').length > 0 | document.getElementsByClassName('BasicHeader--success').length > 0);
        if (!getLocalStorageItem(storedIsActive)){
            setLocalStorageItemWithExpiry(storedIsActive, true, 3*60*60*1000); //Expire after 2h
        }
@@ -116,7 +115,6 @@ function addBotton() {
     document.body.prepend(notifyBottonOn);
 
     if (getLocalStorageItem(storedIsActive)){
-        console.log('avant');
         setTimeout(function(){ monitorBuild(); }, 1000);
     } else {
         notifyBottonOn.style.visibility = 'hidden';
