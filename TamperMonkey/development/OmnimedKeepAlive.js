@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Website Keep-Alive
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Prevents automatic logout by refreshing the keepAlive cookie
 // @author       nvroy
 // @match        https://cloud.dev.omnimed.com/omnimed/do*
@@ -24,7 +24,7 @@
 
     // Function to set the needKeepAliveCas in localStorage
     function setKeepAliveItem() {
-        localStorage.setItem('needKeepAliveCas', 'true');
+        localStorage.setItem('needKeepAliveCas', 'false');
         logDebug('Keep-alive item set in localStorage');
     }
 
