@@ -1,12 +1,10 @@
 // ==UserScript==
 // @name         ActiveMQDlqQueueFiller
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.5
 // @description  Print all file names from DLQ
 // @author       Antoine Cloutier
-// @match        http://192.168.254.181:8161/admin/message.jsp*
-// @match        http://192.168.254.3:8161/admin/message.jsp*
-// @match        http://192.168.254.2:8161/admin/message.jsp*
+// @match        http://*/admin/message.jsp*
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // ==/UserScript==
@@ -53,7 +51,9 @@ function autofill() {
 
 function getManualMappings() {
     let map = new Map();
+    map.set('emr.integration-clinical-note-push-route-ciusss05-pdf.request.clinical-note.push.0.dlq', 'Consumer.emr-integration-clinical-note-push-route-ciusss05-pdf-request-clinicalNote-push-0.VirtualTopic.push.CLINICAL_NOTE');
     map.set('emr.integration-clinical-note-push-fhir-gaspesie.request.note.import-retry.0.dlq', 'Consumer.emr-integration-clinical-note-push-fhir-gaspesie-request-note-push-0.VirtualTopic.push.CLINICAL_NOTE');
+    map.set('hl7-importer.documents.retry.dlq', 'hl7-importer.documents.import');
 
     return map;
 }
