@@ -77,6 +77,7 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('Requete', qa);
 	colorCucumberTagForQA('@DossierResultat', qa);
 	colorCucumberTagForQA('@DossierActionLogResultat', qa);
+	colorCucumberTagForQA('@FiltrePatient', qa);
 	colorCucumberTagForQA('RevisionResultat', qa);
 	colorCucumberTagForQA('CourrielResultat', qa);
 
