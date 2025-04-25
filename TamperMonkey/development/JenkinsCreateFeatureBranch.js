@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Jenkins create feature branch
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @author       mplante
-// @match        https://jenkins.omnimed.com/job/CreateFeatureBranch/build?delay=0sec
-// @match        https://jenkins.omnimed.com/*/job/CreateFeatureBranch/build?delay=0sec
+// @match        https://jenkins.omnimed.com/job/CreateFeatureBranch/build?delay=0sec*
+// @match        https://jenkins.omnimed.com/*/job/CreateFeatureBranch/build?delay=0sec*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=omnimed.com
 // @grant        none
 // ==/UserScript==
