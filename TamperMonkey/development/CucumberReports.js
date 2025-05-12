@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Cucumber pimper
 // @namespace    http://tampermonkey.net/
-// @version      8.2
+// @version      8.3
 // @description  Pimp cucumber reports
 // @author       mquiron, mcormier, nguillet, shenault, marobert
 // @match        https://jenkins.omnimed.com/*job/*/cucumber-html-reports/*overview-tags.html
@@ -75,6 +75,7 @@ function colorCucumberTags() {
 	 //Équipe Requetes et resultats
 	qa = 'Req';
 	colorCucumberTagForQA('Requete', qa);
+	colorCucumberTagForQA('Ramq', qa);
 	colorCucumberTagForQA('@DossierResultat', qa);
 	colorCucumberTagForQA('@DossierActionLogResultat', qa);
 	colorCucumberTagForQA('@FiltrePatient', qa);
@@ -89,11 +90,12 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@Aide', qa);
 	colorCucumberTagForQA('Tache', qa);
 	colorCucumberTagForQA('@Nouvelle', qa);
-	colorCucumberTagForQA('@MenuOmnimed', qa);
 
 	//Équipe Médication
 	qa = 'Med';
 	colorCucumberTagForQA('acturation', qa);
+	colorCucumberTagForQA('Cercle', qa);
+	colorCucumberTagForQA('Contact', qa);
 	colorCucumberTagForQA('@DossierAllergie', qa);
 	colorCucumberTagForQA('@DossierActionLogAllergie', qa);
 	colorCucumberTagForQA('@DossierActionLogImmunisation', qa);
@@ -112,7 +114,6 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@Profil', qa);
 	colorCucumberTagForQA('@UProfil', qa);
 	colorCucumberTagForQA('@IProfil', qa);
-	colorCucumberTagForQA('Contact', qa);
 
 	//Équipe Intégration
 	qa = 'Int';
@@ -131,6 +132,7 @@ function colorCucumberTags() {
 	qa = 'All'
 	colorCucumberTagForQA('@CreationDonnee', qa);
 	colorCucumberTagForQA('Exemple', qa);
+	colorCucumberTagForQA('@MenuOmnimed', qa);
 }
 
 colorCucumberTags();
