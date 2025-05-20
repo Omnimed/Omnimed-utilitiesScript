@@ -35,7 +35,7 @@
 !define CONTAINER_AUTHORIZATION Container(authorization, "Authorization", "UBUNTU_14, KARAF_4", "Service d'authentification OAUTH2")
 !define CONTAINER_BROKER Container(broker, "Broker", "UBUNTU_14 , SPRINGBOOT", "Système de messagerie par Inscription")
 !define CONTAINER_CALENDAR Container(calendar, "Api-Calendar", "SPRINGBOOT2", "Application du domaine calendrier")
-!define CONTAINER_CAS Container(cas, "CAS", "UBUNTU_14 , TOMCAT_7, CAS_35", "Service central d'authentification")
+!define CONTAINER_CAS Container(cas, "CAS", "UBUNTU_14 , TOMCAT_9, CAS_6", "Service central d'authentification")
 !define CONTAINER_COMMON Container(common, "Common", "VIRGO_SERVER, VIRGO_STACK", "Ensemble des services cliniques et administratifs.")
 !define CONTAINER_COMMON_LITE Container(commonLite, "CommonLite", "VIRGO_SERVER, VIRGO_STACK", "Ensemble des services d'impression de notes cliniques.")
 !define CONTAINER_CONFIGSERVER Container(configServer, "Config Server", "UBUNTU_14 , SPRINGBOOT", "Système de configuration des systèmes")

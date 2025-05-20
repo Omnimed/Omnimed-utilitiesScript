@@ -6,7 +6,7 @@
 !define ALPINE_LINUX Alpine Linux
 !define APACHE_2 Apache 2.2
 !define BUSYBOX_LINUX Busybox Linux
-!define CAS_35 Apereo CAS
+!define CAS_6 Apereo CAS
 !define CENTOS CentOs
 !define CONNECT_TO Se connecte à
 !define DELPHI_7 Borland Delphi 7
@@ -28,17 +28,21 @@
 !define RABBITMQ RabbitMq
 !define SPRINGBOOT SpringBoot, Tomcat
 !define SPRINGBOOT2 Springboot2
-!define SPRINGBOOT_STACK Springboot2, Tomcat 9, Jdk 11
+!define SPRINGBOOT_STACK Springboot2, TOMCAT_9, Jdk 11
 !define TOMCAT_6 Apache Tomcat 6
-!define TOMCAT_7 Apache Tomcat 7
+!define TOMCAT_7 Apache Tomcat 7.0.53
 !define TOMCAT_8 Apache Tomcat 8
+!define TOMCAT_9 Apache Tomcat 9.0.62
+!define TOMCAT_10 Apache Tomcat 10.1.20
 !define UBUNTU_12 Ubuntu Linux 12
 !define UBUNTU_14 Ubuntu Linux 14
-!define UBUNTU_18 Ubuntu Linux 18
-!define VIRGO_36 Osgi Virgo Server
+!define UBUNTU_18 Ubuntu Linux 1814
+!define UBUNTU_20 Ubuntu Linux 20
+!define UBUNTU_24 Ubuntu Linux 24
+!define VIRGO_36 Osgi Virgo Server, TOMCAT_7
 !define VIRGO_CONTAINER ALPINE_LINUX, VIRGO_36
 !define VIRGO_SERVER UBUNTU_18, VIRGO_36
-!define VIRGO_STACK JDK 1.7, HIBERNATE_4, Spring
+!define VIRGO_STACK JDK 1.7, HIBERNATE_4, Spring, TOMCAT_7
 !define VIRGO_HR_STACK VIRGO_STACK, Primefaces
 !define WINDOWS_SERVER_2003 Windows Server 2003
 !define WINDOWS_SERVER_2012 Windows Server 2012R2

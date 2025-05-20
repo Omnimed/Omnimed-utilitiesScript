@@ -33,7 +33,7 @@
 !define SYS_EXT_INTEGRATION_SANTE System_Ext(integrationsante, "Intégration Santé", "Intégration de systèmes et exploitation d'engins d'interfaces")
 !define SYS_EXT_CDL System_Ext(cdllabs, "Laboratoires CDL", "Système externe produisant les résultats de laboratoires des laboratoires CDL sous format HL7v2")
 
-!define SYS_CAS System(cas, "CAS", "UBUNTU_14 , TOMCAT_7, CAS_35")
+!define SYS_CAS System(cas, "CAS", "UBUNTU_24 , TOMCAT_9, CAS_6")
 !define SYS_ACTIVE_DIRECTORY System(ad, "Active Directory", "WINDOWS_SERVER_2012")
 !define SYS_ENGINE System(engine, "Engine", "VIRGO_SERVER, VIRGO_STACK")
 !define SYS_ORACLE System(oracle_database, "Base de données Oracle", "ORACLE_LINUX, ORACLE_10")
