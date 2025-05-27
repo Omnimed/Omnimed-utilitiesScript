@@ -20,12 +20,3 @@ endlegend
 ' ##################################
 
 !define Container_Boundary(e_alias, e_label) rectangle "==e_label [Contenant]" <<boundary>> as e_alias
-
-' CVE
-' ##################################
-
-!define BUILD_CVE_MAP(map_display_title, instance_alias, cvss_value, description_text) \
-  map "map_display_title" as map_display_title##instance_alias {%newline() \
-    "CVSS" => cvss_value %newline() \
-    "Description" => description_text %newline() \
-  }

@@ -1,7 +1,15 @@
 ' ##########################################
 ' Security / CVE definitions
 ' ##########################################
-!include https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/master/PlantUML/c4/omnimed_c4_container.puml
+
+' CVE Definition
+' ##################################
+
+!define BUILD_CVE_MAP(map_display_title, instance_alias, cvss_value, description_text) \
+  map "map_display_title" as map_display_title##instance_alias {%newline() \
+    "CVSS" => cvss_value %newline() \
+    "Description" => description_text %newline() \
+  }
 
 !define CVE_2014_0119(alias) BUILD_CVE_MAP(CVE_2014_0119, alias, "4.3", "Apache Tomcat before 6.0.40, 7.x before 7.0.54, and 8.x before 8.0.6 does not properly constrain the class loader that accesses the XML parser used with an XSLT stylesheet, which allows remote attackers to (1) read arbitrary files via a crafted web application that provides an XML external entity declaration in conjunction with an entity reference, related to an XML External Entity (XXE) issue, or (2) read files associated with different web applications on a single Tomcat instance via a crafted web application.")
 !define CVE_2014_0227(alias) BUILD_CVE_MAP(CVE_2014_0227, alias, "6.4", "java/org/apache/coyote/http11/filters/ChunkedInputFilter.java in Apache Tomcat 6.x before 6.0.42, 7.x before 7.0.55, and 8.x before 8.0.9 does not properly handle attempts to continue reading data after an error has occurred, which allows remote attackers to conduct HTTP request smuggling attacks or cause a denial of service (resource consumption) by streaming data with malformed chunked transfer coding.")
