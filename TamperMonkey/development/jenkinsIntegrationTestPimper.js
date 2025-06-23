@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      4.1
+// @version      6.0
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier
 // @match        https://jenkins.omnimed.com/*/job/*/*/
@@ -19,14 +19,15 @@ function getElementByXpath(path) {
 
 function parseAndCleanList(tableId){
     var listTag = [];
-    var list = getElementByXpath("/html/body[@id='jenkins']/div[@id='page-body']/div[@id='main-panel']/table/tbody/tr[" + tableId + "]/td[2]/ul")
+    var list = getElementByXpath("/html/body[@id='jenkins']/div[@id='page-body']/div[@id='main-panel']/table['failedtestresult']/tbody")
+    console.log("patate"+list)
     var nbCuke = 0
     var nbTestIntegration = 0
     try {
         for (var i = 0; i < list.children.length; i++) {
         var currentChildNode = list.childNodes[i]
         var currentChildNodeText = currentChildNode.textContent
-        if((currentChildNodeText.includes("Integration Test / healthrecord") & currentChildNodeText.includes("---")) || (currentChildNodeText.includes("Integration Test / frontend-healthrecord") & currentChildNodeText.includes("---"))) {
+        if(currentChildNodeText.includes("test-e2e")) {
             listTag[nbCuke] = getTagOfCuke(currentChildNode);
             deleteCukeFromList(currentChildNode);
              nbCuke++
@@ -49,13 +50,14 @@ function getTagOfCuke(element){
     }
 
 function buildNewPage(element,nbCuke,nbIT,tagList){
+    console.log(nbCuke, nbIT, tagList)
     var result = tagList.reduce((r,c) => (r[c] = (r[c] || 0) + 1, r), {});
     var tagsArray = [];
     for (var tag in result){
       tagsArray.push(["" +tag + " : " + result[tag]] + "<br />")
     }
     var parent = element.offsetParent
-    parent.outerHTML = parent.outerHTML.replace(")", ")<br /><br /></a><b>" + nbCuke + " cukes en erreur :</b><br /> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp@" + tagsArray.join('&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp@') + "<br /><b>" + nbIT + " tests d'intégrations en erreur :</b> <br />" );
+    parent.outerHTML = parent.outerHTML.replace("failedtestresult\"\>", "failedtestresult\"<br /><br /></a><b>" + nbCuke + " cukes en erreur :</b><br /> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp@" + tagsArray.join('&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp@') + "<br /><b>" + nbIT + " tests d'intégrations en erreur :</b> <br />" );
 }
 
 function deleteCukeFromList(element) {
@@ -72,9 +74,4 @@ function reduceSizeOfElement(element) {
 
 openAllFailedTest();
 //depending on the page the list can be on various postions
-parseAndCleanList(0);
-parseAndCleanList(1);
-parseAndCleanList(2);
-parseAndCleanList(3);
-parseAndCleanList(4);
-parseAndCleanList(5);
+parseAndCleanList();
