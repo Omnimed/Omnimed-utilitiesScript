@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Clickable JIRA Keys on GitHub
 // @namespace    https://omnimed.com/
-// @version      1.1
+// @version      1.2
 // @description  Turns DEV-1234 references into clickable links on GitHub titles, PRs, and commits.
 // @author       msamson
 // @match        https://github.com/Omnimed/*
@@ -15,7 +15,7 @@
     const JIRA_PREFIX = 'DEV-'; // Jira key prefix
     const JIRA_URL = 'https://omnimedjira.atlassian.net/browse/'; // Jira URL
 
-    const JIRA_REGEX = new RegExp(`\\b${JIRA_PREFIX}\\d+\\b`, 'g');
+    const JIRA_REGEX = new RegExp(`\\b${JIRA_PREFIX}\\d+\\b`, 'gi');
 
     function convertTextNodeToLinks(node) {
         if (
