@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Sanity check whitboard - Jira
 // @namespace    http://tampermonkey.net/
-// @version      1
-// @description  Creer les jql nécéssaire pour identifier les tickets manquant dans le board ou l'épique.
+// @version      1.1
+// @description  try to take over the world!
 // @author       marobert
 // @match        https://omnimedjira.atlassian.net/*/whiteboard/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=atlassian.net
@@ -19,7 +19,8 @@
     btn.textContent = '📋 Extraire tickets JQL';
     btn.style.position = 'fixed';
     btn.style.bottom = '20px';
-    btn.style.left = '20px';
+    btn.style.right = '100px';
+    btn.style.left = 'auto';
     btn.style.padding = '10px 15px';
     btn.style.backgroundColor = '#0052cc';
     btn.style.color = 'white';
@@ -64,6 +65,10 @@
     });
 
     // Ajout au DOM
-    document.body.appendChild(btn);
+    if (window.location.href.endsWith('visualRefresh=true')) {
+        console.log('⏩ Script ignoré (visualRefresh=true détecté)');
+    } else {
+        document.body.appendChild(btn);
+    }
   });
 })();
