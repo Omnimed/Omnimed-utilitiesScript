@@ -1,10 +1,11 @@
 // ==UserScript==
 // @name         Clickable JIRA Keys on GitHub
 // @namespace    https://omnimed.com/
-// @version      1.2
+// @version      1.3
 // @description  Turns DEV-1234 references into clickable links on GitHub titles, PRs, and commits.
 // @author       msamson
 // @match        https://github.com/Omnimed/*
+// @icon         https://github.githubassets.com/favicons/favicon.png
 // @grant        none
 // ==/UserScript==
 
@@ -48,6 +49,7 @@
     function processGitHubTitles() {
         const selectors = [
             '.js-issue-title', // Issue/PR title on detail page
+            '.markdown-title', // PR title on experimental page
             '.link-gray-dark.h4', // PR list titles (legacy)
             '.Link--primary.v-align-middle', // PR list titles (modern)
             '.commit-title', // Commit messages
@@ -64,7 +66,7 @@
     }
 
     function replaceNumberWithLink() {
-        const container = document.querySelector('.gh-header-title');
+        const container = document.querySelector('.gh-header-title') ?? document.querySelector('[data-component="PH_Title"]');
         if (!container || container.dataset.linkified === 'true') return;
 
         const numberNode = container.children[1]; // second child (the "#1234" span)
@@ -75,9 +77,10 @@
 
         // Create link
         const link = document.createElement('a');
+        link.className = numberNode.className;
         link.href = pageUrl;
         link.textContent = numberText;
-        link.style.color = '#0969da';
+        link.style.setProperty("color", "#0969da", "important");
         link.style.textDecoration = 'underline';
         link.style.marginLeft = '4px';
 
