@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      6.1
+// @version      6.2
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier, marobert
 // @match        https://jenkins.omnimed.com/*/job/*/*/
@@ -93,7 +93,8 @@ function reduceSizeOfElement(element) {
 //*[@id="failedtestresult"]/tbody/tr[1]/td[1]/a[3]/text()
 
 function colorTestTagForQA(tag, qa) {
-    const links = document.querySelectorAll('#failedtestresult a[href*="' + tag + '"]');
+    const tagLower = tag.toLowerCase();
+    const links = [...document.querySelectorAll('#failedtestresult a')].filter(a => a.getAttribute('href')?.toLowerCase().includes(tagLower));
     if (links.length > 0) {
         links.forEach(link => {
             link.parentElement.querySelector('a').classList.remove('qaDos', 'qaReq', 'qaMed', 'qaMad', 'qaPor', 'qaInt');
@@ -163,6 +164,7 @@ function colorTestTags() {
 	colorTestTagForQA('task', qa);
 	colorTestTagForQA('institutioncontact', qa);
     colorTestTagForQA('crm', qa);
+    colorTestTagForQA('portal', qa);
 
 	//Équipe Médication
 	qa = 'Med';
