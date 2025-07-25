@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Hijack Create Branch Link
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Hijack Jira's Create Branch link, generate branch name, and pass to Jenkins
 // @author       msamson
 // @match        https://omnimedjira.atlassian.net/*
@@ -11,7 +11,7 @@
 (function () {
     'use strict';
 
-    const SELECTOR_CREATE_BRANCH = '[data-testid="development-summary-common.ui.summary-item.link-formatted-button"]';
+    const SELECTOR_CREATE_BRANCH = '[href*="https://github.atlassian.com/create-branch"]';
     const SELECTOR_FOR_ISSUE = '[data-testid="issue.views.issue-base.foundation.breadcrumbs.current-issue.item"]';
     const SELECTOR_FOR_TEAM = '[data-testid="issue-field-team.ui.view-team-name"]';
     const SELECTOR_FOR_TITLE = '[data-testid="issue.views.issue-base.foundation.summary.heading"]';
@@ -30,8 +30,9 @@
 
     };
 
-    function slugify(text) {
-        return text.toLowerCase()
+    function kebabify(text) {
+        return text.normalize("NFD")
+                   .toLowerCase()
                    .replace(/[^\w\s-]/g, '')
                    .replace(/\s+/g, '-')
                    .replace(/-+/g, '-');
@@ -61,7 +62,7 @@
             }
 
             const ticketNumber = issueKey.split('-')[1]; // Get just the number
-            const branchName = `feature-${teamTag}-${ticketNumber}-${slugify(title)}`;
+            const branchName = `feature-${teamTag}-${ticketNumber}-${kebabify(title)}`;
             const jenkinsUrl = `${JENKINS_URL_BASE}${encodeURIComponent(branchName)}`;
 
             window.open(jenkinsUrl, "_blank");
