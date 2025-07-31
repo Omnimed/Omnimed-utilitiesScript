@@ -92,6 +92,7 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@Aide', qa);
 	colorCucumberTagForQA('Tache', qa);
 	colorCucumberTagForQA('@Nouvelle', qa);
+	colorCucumberTagForQA('@Authentification', qa);
 
 	//Équipe Médication
 	qa = 'Med';
@@ -120,7 +121,6 @@ function colorCucumberTags() {
 	//Équipe Intégration
 	qa = 'Int';
 	//----SessionOnimed----
-	colorCucumberTagForQA('@Authentification', qa);
 	colorCucumberTagForQA('@ExpirationSession', qa);
 	colorCucumberTagForQA('@Compte', qa);
 	colorCucumberTagForQA('@RecherchePatient', qa);
