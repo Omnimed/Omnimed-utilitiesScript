@@ -22,6 +22,7 @@
 !define CONTAINER_API_PATIENTDOCUMENTUPLOADED Container(patientDocumentUploadedApi, "API PatientDocumentUploaded", "SPRINGBOOT2", "API de téléversement de document patient à partir du frontend-transmission")
 !define CONTAINER_API_PRESCRIBEIT Container(prescribeitApi, "Api-PrescribeIt", "SPRINGBOOT2", "Application du domaine PrescribeIt")
 !define CONTAINER_API_PRIVATE_BILLING Container(privateBillingApi, "Api-PrivateBilling", "SPRINGBOOT2", "Application du domaine Facturation privée")
+!define CONTAINER_API_PRIVATE_BILLING_ADMIN Container(privateBillingAdminApi, "Api-PrivateBilling-Admin", "SPRINGBOOT3", "Application du domaine d'administration de la facturation privée")
 !define CONTAINER_API_USERCONFIGURATION Container(userconfigurationApi, "API sécurisé UserConfiguration", "SPRINGBOOT2", "API sécurisé de Config Utilisateurs")
 !define CONTAINER_HL7_IMPORTER Container(hl7Importer, "Service d'importation de messages HL7", "SPRINGBOOT2, Camel", "Service d'importation de messages HL7")
 !define CONTAINER_CLINICALNOTE_PUSH Container(clinicalNotePush, "Service de push de la note clinique", "SPRINGBOOT2, Camel", "Service de push de la note clinique")
