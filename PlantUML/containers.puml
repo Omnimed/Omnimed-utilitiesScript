@@ -58,6 +58,7 @@
 !define CONTAINER_FRONTEND_HEALTHRECORD_FORM_SELECTION Container(frontendHealthrecordFormSelection, "frontendHealthrecordActionLog", "Angular", "Application frontend Angular")
 !define CONTAINER_FRONTEND_PRESCRIBEIT Container(frontendPrescribeIt, "frontendPrescribeIt", "Angular", "Application frontend Angular")
 !define CONTAINER_FRONTEND_PRIVATE_BILLING Container(frontendPrivateBilling, "FrontendPrivateBilling", "Angular", "Application frontend Angular pour la Facturation privée")
+!define CONTAINER_FRONTEND_PRIVATE_BILLING_ADMIN Container(frontendPrivateBillingAdmin, "FrontendPrivateBillingAdmin", "Angular", "Application frontend Angular pour l'administration de la facturation privée")
 !define CONTAINER_FRONTEND_RESOURCES_APPOINTMENT_MODULE_USER_CONFIGURATION_APPLICATION_CONTROLLER Container(frontendResourcesAppointmentModuleUserConfigurationApplicationController, "AppointmentModuleUserConfigurationApplicationController.js", "Javascript", "Controlleur javascript entre iFrame Angular et frontend legacy pour communications liées à la configuration utilisateur.")
 !define CONTAINER_FRONTEND_RESOURCES_CALENDAR_CONTROLLER Container(frontendResourcesCalendarController, "CalendarController.js", "Javascript", "Controlleur javascript servant de pont entre plusieurs actions possibles dans le module rendez-vous.")
 !define CONTAINER_FRONTEND_TRANSMISSION Container(frontendTransmission, "frontendTransmission", "Angular", "Application frontend Angular")
