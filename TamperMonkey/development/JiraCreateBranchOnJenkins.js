@@ -5,6 +5,9 @@
 // @description  Hijack Jira's Create Branch link, generate branch name, and pass to Jenkins
 // @author       msamson
 // @match        https://omnimedjira.atlassian.net/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=atlassian.net
+// @updateURL    https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/refs/heads/master/TamperMonkey/development/JiraCreateBranchOnJenkins.js
+// @downloadURL  https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/refs/heads/master/TamperMonkey/development/JiraCreateBranchOnJenkins.js
 // @grant        none
 // ==/UserScript==
 

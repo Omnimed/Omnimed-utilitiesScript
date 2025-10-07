@@ -5,6 +5,9 @@
 // @author       msamson
 // @description  Fill in branch name from query params
 // @match        https://jenkins.omnimed.com/job/CreateFeatureBranch/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=jenkins.io
+// @updateURL    https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/refs/heads/master/TamperMonkey/development/JenkinsAutofiller.js
+// @downloadURL  https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/refs/heads/master/TamperMonkey/development/JenkinsAutofiller.js
 // @grant        none
 // ==/UserScript==
 
