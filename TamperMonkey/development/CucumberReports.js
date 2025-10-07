@@ -1,31 +1,35 @@
 // ==UserScript==
 // @name         Cucumber pimper
 // @namespace    http://tampermonkey.net/
-// @version      8.5
+// @version      8.6
 // @description  Pimp cucumber reports
-// @author       mquiron, mcormier, nguillet, shenault, marobert
+// @author       mquiron, mcormier, nguillet, shenault, marobert, msamson
 // @match        https://jenkins.omnimed.com/*job/*/cucumber-html-reports/*overview-tags.html
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=jenkins.io
+// @updateURL    https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/refs/heads/master/TamperMonkey/development/CucumberReports.js
+// @downloadURL  https://raw.githubusercontent.com/Omnimed/Omnimed-utilitiesScript/refs/heads/master/TamperMonkey/development/CucumberReports.js
 // @grant        none
 // ==/UserScript==
+/* eslint-env jquery */
+
 $(document).ready(function() {
-	$("<style type='text/css'> .cukeDos { background-color: blue !important; color: white !important; } </style>").appendTo("head");
-	$("<style type='text/css'> .cukeMed { background-color: black !important; color: white !important; } </style>").appendTo("head");
-	$("<style type='text/css'> .cukeReq { background-color: red !important; color: white !important; } </style>").appendTo("head");
-	$("<style type='text/css'> .cukeMad { background-color: #D8780D !important; color: white !important; } </style>").appendTo("head");
-	$("<style type='text/css'> .cukePor { background-color: green !important; color: white !important; } </style>").appendTo("head");
-	$("<style type='text/css'> .cukeInt { background-color: darkred !important; color: white !important; } </style>").appendTo("head");
-	$("<style type='text/css'> .cukeAll { background-color: grey !important; color: white !important; } </style>").appendTo("head");
+    $(`<style type='text/css'>
+.tagname > a[class^="cuke"] { color: white !important; font-weight: bold; text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3); line-height: 1.5;}
+.tagname:has(.cukeDos) { background-color: #0000FFAA !important; } /* blue */
+.tagname:has(.cukeMed) { background-color: #000000AA !important; } /* black */
+.tagname:has(.cukeReq) { background-color: #FF0000AA !important; } /* red */
+.tagname:has(.cukeMad) { background-color: #D8780DAA !important; } /* orange */
+.tagname:has(.cukePor) { background-color: #008000AA !important; } /* green */
+.tagname:has(.cukeInt) { background-color: #8B0000AA !important; } /* darkred */
+.tagname:has(.cukeAll) { background-color: #808080AA !important; } /* grey */
+ </style>`).appendTo("head");
 });
 
 function colorCucumberTagForQA(tag, qa) {
-	if ($('.tagname > a:contains(' + tag + ')').length !== 0) {
-		$('.tagname > a:contains(' + tag + ')').removeClass('cukeDos');
-		$('.tagname > a:contains(' + tag + ')').removeClass('cukeReq');
-		$('.tagname > a:contains(' + tag + ')').removeClass('cukeMed');
-		$('.tagname > a:contains(' + tag + ')').removeClass('cukeMad');
-		$('.tagname > a:contains(' + tag + ')').removeClass('cukePor');
-		$('.tagname > a:contains(' + tag + ')').removeClass('cukeInt');
-		$('.tagname > a:contains(' + tag + ')').addClass('cuke' + qa);
+    var tagged = '.tagname > a:contains(' + tag + ')';
+	if ($(tagged).length !== 0) {
+		$(tagged).removeClass('cukeDos cukeReq cukeMed cukeMad cukePor cukeInt');
+		$(tagged).addClass('cuke' + qa);
 	} else {
 		console.warn('Cucumber tag ' + tag + ' does not exists');
 	}
@@ -82,9 +86,8 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@FiltrePatient', qa);
 	colorCucumberTagForQA('RevisionResultat', qa);
 	colorCucumberTagForQA('CourrielResultat', qa);
-	
 
-        //Équipe portail patient
+    //Équipe portail patient
 	qa = 'Por';
 	colorCucumberTagForQA('AdministrationDemande', qa);
 	colorCucumberTagForQA('Portail', qa);
@@ -126,9 +129,9 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@RecherchePatient', qa);
 
 	//Équipe Dossier
-    	//Pour un tag Outil qui est aussi contenu dans CentreAdmin, je dois le placer après
-    	qa = 'Dos';
-    	colorCucumberTagForQA('Outil', qa);
+    //Pour un tag Outil qui est aussi contenu dans CentreAdmin, je dois le placer après
+    qa = 'Dos';
+    colorCucumberTagForQA('Outil', qa);
 
 	//All
 	qa = 'All'
