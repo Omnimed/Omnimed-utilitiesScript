@@ -84,7 +84,7 @@ function refreshJiraBacklog() {
         $originalEstimateBadgeEl = $(this).find("span[data-testid='issue-field-original-estimate.ui.view.badge'] span");
         $originalEstimateBadgeEl.html(remainingTime);
 
-        // Flags the label and badge in red when valeu is refused
+        // Flags the label and badge in red when value is refused
         if (REFUSED_REMAINING_TIMES.includes(remainingTime)) {
             setAlert($originalEstimateBadgeEl.parent());
             setAlert($originalEstimateBadgeEl);
@@ -114,6 +114,8 @@ function refreshJiraBacklog() {
         $firstChildEl = $rowEl.find('div').first();
         $firstChildEl.css('display', 'flex');
 
+        // Add specific width for the parent of RemainingTime And TimeSpent
+        $remainingTimeEl.parent().parent().css('width', '240px');
     });
 }
 
