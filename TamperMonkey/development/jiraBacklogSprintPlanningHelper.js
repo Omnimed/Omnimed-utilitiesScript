@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira backlog sprint planning helper
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @description  Helper to ensure tickets are assigned, evaluated and no one is overloaded [Backlog view]
 // @author       acloutier/bpaquet
 // @match        https://omnimedjira.atlassian.net/jira/software/c/projects/DEV/boards/*/backlog*
