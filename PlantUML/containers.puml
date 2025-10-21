@@ -17,6 +17,7 @@
 !define CONTAINER_API_FILE Container(fileApi, "Api File", "SPRING", "Api de fichiers")
 !define CONTAINER_API_GATEWAY Container(gatewayApi, "API gateway", "SPRINGBOOT2", "API gateway nord-sud")
 !define CONTAINER_API_INSTITUTION Container(institutionApi, "API sécurisé Institution", "SPRINGBOOT2", "API sécurisé d'institutions")
+!define CONTAINER_API_OBJECT_STORAGE Container(objectStorageApi, "API Object Storage", "SPRINGBOOT3", "API permettant de s'interfacer avec des dépôts de données")
 !define CONTAINER_API_PATIENT_SEARCH Container(patientSearchApi, "Api-PatientSearch", "SPRINGBOOT2", "Application recherche patient")
 !define CONTAINER_API_PATIENTDOCUMENTREQUESTS Container(patientDocumentRequestApi, "API PatientDocumentRequests", "SPRINGBOOT2", "API de gestion de documents patient")
 !define CONTAINER_API_PATIENTDOCUMENTUPLOADED Container(patientDocumentUploadedApi, "API PatientDocumentUploaded", "SPRINGBOOT2", "API de téléversement de document patient à partir du frontend-transmission")
