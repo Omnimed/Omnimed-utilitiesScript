@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      6.2
+// @version      6.3
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier, marobert
 // @match        https://jenkins.omnimed.com/*/job/*/*/
