@@ -108,6 +108,10 @@ function colorTestTagForQA(tag, qa) {
 
 function colorTestTags() {
 	var qa = '';
+	//Équipe Requetes et resultats
+	//Cette condition doit être considérée au début car certains tests ont du texte comme badRequest dans le nom et ne sont pas tagués à la bonne équipe
+	qa = 'Req';
+	colorTestTagForQA('request', qa);
 
 	//Équipe Dossier
 	qa = 'Dos';
@@ -151,7 +155,6 @@ function colorTestTags() {
     colorTestTagForQA('adt', qa);
     colorTestTagForQA('document', qa);
     colorTestTagForQA('ramq', qa);
-    colorTestTagForQA('request', qa);
     colorTestTagForQA('order', qa);
     colorTestTagForQA('file', qa);
     colorTestTagForQA('route', qa);
