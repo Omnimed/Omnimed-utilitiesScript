@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      6.3
+// @version      6.4
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier, marobert
 // @match        https://jenkins.omnimed.com/*/job/*/*/
@@ -168,6 +168,7 @@ function colorTestTags() {
 	colorTestTagForQA('institutioncontact', qa);
     colorTestTagForQA('crm', qa);
     colorTestTagForQA('portal', qa);
+	colorTestTagForQA('keycloak', qa);
 
 	//Équipe Médication
 	qa = 'Med';
