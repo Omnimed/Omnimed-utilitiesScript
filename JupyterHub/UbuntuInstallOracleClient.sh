@@ -32,3 +32,6 @@ fi
 sudo sh -c "echo /opt/oracle/instantclient_21_13 > \
       /etc/ld.so.conf.d/oracle-instantclient.conf"
 sudo ldconfig
+
+sed -i '$i \  ,\"env\": {\n \    \"LD_LIBRARY_PATH\": \"/home/jovyan/instantclient_21_13\",\n \    \"OCI_LIB\": \"/home/jovyan/instantclient_21_13\"\n }' /opt/conda/share/jupyter/kernels/ir/kernel.json 
+
