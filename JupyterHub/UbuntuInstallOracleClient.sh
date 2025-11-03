@@ -35,3 +35,5 @@ sudo ldconfig
 
 sed -i '$i \  ,\"env\": {\n \    \"LD_LIBRARY_PATH\": \"/home/jovyan/instantclient_21_13\",\n \    \"OCI_LIB\": \"/home/jovyan/instantclient_21_13\"\n }' /opt/conda/share/jupyter/kernels/ir/kernel.json 
 
+sudo apt update
+sudo apt-get install -y libpq-dev
