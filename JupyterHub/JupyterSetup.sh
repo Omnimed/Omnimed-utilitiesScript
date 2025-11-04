@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Oracle Client Install (UbuntuInstallOracleClient)
 sudo mkdir -p /opt/oracle
 if [ ! -d "/opt/oracle/instantclient_21_13" ]; then
     if [ -d "/home/jovyan/instantclient_21_13" ]; then
@@ -33,7 +34,21 @@ sudo sh -c "echo /opt/oracle/instantclient_21_13 > \
       /etc/ld.so.conf.d/oracle-instantclient.conf"
 sudo ldconfig
 
-sed -i '$i \  ,\"env\": {\n \    \"LD_LIBRARY_PATH\": \"/home/jovyan/instantclient_21_13\",\n \    \"OCI_LIB\": \"/home/jovyan/instantclient_21_13\"\n }' /opt/conda/share/jupyter/kernels/ir/kernel.json 
+sed -i '$i \  ,\"env\": {\n \    \"LD_LIBRARY_PATH\": \"/home/jovyan/instantclient_21_13\",\n \    \"OCI_LIB\": \"/home/jovyan/instantclient_21_13\"\n }' /opt/conda/share/jupyter/kernels/ir/kernel.json
 
 sudo apt update
 sudo apt-get install -y libpq-dev
+
+
+# uv Install
+if [ ! -d "/home/jovyan/.local/share/uv" ]; then
+  sudo curl -LsSf https://astral.sh/uv/0.7.21/install.sh | sh
+fi
+
+# Python Kernel Install
+if [ ! -e "$(uv python find 3.12.11)" ]; then
+  uv python install 3.12.11
+  uv venv /home/jovyan/.venv31211 --python 3.12.11
+  uv pip install -p /home/jovyan/.venv31211/bin/python ipykernel pip
+  uv run -p /home/jovyan/.venv31211/bin/python -m ipykernel install --name python3.12.11 --user
+fi
