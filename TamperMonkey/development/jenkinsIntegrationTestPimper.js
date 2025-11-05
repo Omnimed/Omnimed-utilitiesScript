@@ -198,6 +198,11 @@ function colorTestTags() {
     colorTestTagForQA('webapp', qa);
     colorTestTagForQA('patient.search', qa);
 
+	//Équipe Dossier
+    //Cette condition doit être considérée à la fin sinon le tag patient l'emporte
+	qa = 'Dos';
+    colorTestTagForQA('patientform', qa);
+	
 	//All
 	qa = 'All'
 
