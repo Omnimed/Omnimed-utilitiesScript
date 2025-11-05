@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      6.4
+// @version      6.5
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier, marobert
 // @match        https://jenkins.omnimed.com/*/job/*/*/
@@ -198,6 +198,11 @@ function colorTestTags() {
     colorTestTagForQA('webapp', qa);
     colorTestTagForQA('patient.search', qa);
 
+	//Équipe Dossier
+    //Cette condition doit être considérée à la fin sinon le tag patient l'emporte
+	qa = 'Dos';
+    colorTestTagForQA('patientform', qa);
+	
 	//All
 	qa = 'All'
 
