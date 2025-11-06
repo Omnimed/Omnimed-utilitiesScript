@@ -44,12 +44,14 @@ if [ ! -e "/home/jovyan/.local/bin/uv" ]; then
   sudo curl -LsSf https://astral.sh/uv/0.7.21/install.sh | sh
 fi
 
-# Python Kernel Install
-# if [ ! -d "/home/jovyan/.local/share/uv/python/cpython-3.12.11-linux-x86_64-gnu" ]; then
-#   venv_folder="/home/jovyan/.venv31211"
+export PATH="/home/jovyan/.local/bin:$PATH"
 
-#   uv python install 3.12.11
-#   uv venv $venv_folder -p 3.12.11
-#   uv pip install -p $venv_folder/bin/python3 ipykernel pip
-#   uv run -p $venv_folder/bin/python3 -m ipykernel install --name python3.12.11 --user
-# fi
+# Python Kernel Install
+if [ ! -d "/home/jovyan/.local/share/uv/python/cpython-3.12.11-linux-x86_64-gnu" ]; then
+  venv_folder="/home/jovyan/.venv3-12-11"
+
+  uv python install 3.12.11
+  uv venv $venv_folder -p 3.12.11
+  uv pip install -p $venv_folder/bin/python3 ipykernel pip
+  uv run -p $venv_folder/bin/python3 -m ipykernel install --name python3.12.11 --user
+fi
