@@ -34,8 +34,12 @@ sudo sh -c "echo /opt/oracle/instantclient_21_13 > \
       /etc/ld.so.conf.d/oracle-instantclient.conf"
 sudo ldconfig
 
-sed -i '$i \  ,\"env\": {\n \    \"LD_LIBRARY_PATH\": \"/home/jovyan/instantclient_21_13\",\n \    \"OCI_LIB\": \"/home/jovyan/instantclient_21_13\"\n }' /opt/conda/share/jupyter/kernels/ir/kernel.json
+#Env var for ROracle
+if ! grep -q "LD_LIBRARY_PATH" /opt/conda/share/jupyter/kernels/ir/kernel.json; then
+  sed -i '$i \  ,\"env\": {\n \    \"LD_LIBRARY_PATH\": \"/home/jovyan/instantclient_21_13\",\n \    \"OCI_LIB\": \"/home/jovyan/instantclient_21_13\"\n }' /opt/conda/share/jupyter/kernels/ir/kernel.json
+fi
 
+#Lib for RPosgreSQL
 sudo apt update
 sudo apt-get install -y libpq-dev
 
