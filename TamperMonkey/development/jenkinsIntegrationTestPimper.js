@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      6.5
+// @version      6.6
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier, marobert
 // @match        https://jenkins.omnimed.com/*/job/*/*/
@@ -45,7 +45,7 @@ function parseAndCleanList(tableId){
         for (var i = 0; i < list.children.length; i++) {
         var currentChildNode = list.childNodes[i]
         var currentChildNodeText = currentChildNode.textContent
-        if(currentChildNodeText.includes("test-e2e")) {
+        if(currentChildNodeText.includes("@")) {
             listTag[nbCuke] = getTagOfCuke(currentChildNode);
             deleteCukeFromList(currentChildNode);
              nbCuke++
