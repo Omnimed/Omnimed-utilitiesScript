@@ -65,7 +65,7 @@
             }
 
             const ticketNumber = issueKey.split('-')[1]; // Get just the number
-            const branchName = `feature-${teamTag}-${ticketNumber}-${kebabify(title)}`;
+            const branchName = `fd-${teamTag}-${ticketNumber}-${kebabify(title)}`;
             const jenkinsUrl = `${JENKINS_URL_BASE}${encodeURIComponent(branchName)}`;
 
             window.open(jenkinsUrl, "_blank");
