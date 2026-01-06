@@ -14,14 +14,47 @@
 (function () {
     'use strict';
 
+    const targetBranchMap = new Map([
+        ["feature", "develop"],
+        ["fd", "develop"],
+        ["fr", "rc"],
+        ["fm", "master"]
+    ]);
+
+    const teamNameMap = new Map([
+        ["ai", "brainiacs"],
+        ["cp", "chillpills"],
+        ["dp", "daftpunks"],
+        ["gk", "gatekeepers"],
+        ["qa", "qa"],
+        ["req", "requesters"],
+        ["st", "starshiptroopers"],
+        ["tk", "timekeepers"],
+        ["tt", "timetwisters"]
+     ]);
+
     const params = new URLSearchParams(window.location.search);
     const branchName = params.get('branchName');
 
     if (branchName) {
-        const input = document.querySelector("input[name='value']");
-        if (input) {
-            input.value = branchName;
-            input.focus();
+        const branchParts = branchName.split("-");
+        const featureName = branchParts.length == 4 ? branchParts.at(-1) : "";
+        const ticketNumber = branchParts.length == 4 ? branchParts.at(-2) : "";
+        const targetBranch = targetBranchMap.has(branchParts.at(0)) ? targetBranchMap.get(branchParts.at(0)) : "develop";
+        const teamName = teamNameMap.has(branchParts.at(1)) ? teamNameMap.get(branchParts.at(1)) : "";
+
+        const dropdowns = document.querySelectorAll("select[name='value']");
+        const input = document.querySelectorAll("input[name='value']");
+
+        if (dropdowns != 0) {
+            dropdowns[0].value = targetBranch;
+            dropdowns[1].value = teamName;
+        }
+
+        if (input.length != 0) {
+            input[0].value = ticketNumber;
+            input[1].value = featureName;
+            input[1].focus();
         }
     }
 })();
