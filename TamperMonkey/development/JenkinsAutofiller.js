@@ -38,8 +38,8 @@
 
     if (branchName) {
         const branchParts = branchName.split("-");
-        const featureName = branchParts.length == 4 ? branchParts.at(-1) : "";
-        const ticketNumber = branchParts.length == 4 ? branchParts.at(-2) : "";
+        const featureName = branchParts.length >= 4 ? branchParts.slice(2).join("-") : "";
+        const ticketNumber = branchParts.length >= 4 ? branchParts.at(2) : "";
         const targetBranch = targetBranchMap.has(branchParts.at(0)) ? targetBranchMap.get(branchParts.at(0)) : "develop";
         const teamName = teamNameMap.has(branchParts.at(1)) ? teamNameMap.get(branchParts.at(1)) : "";
 
