@@ -13,14 +13,14 @@
     'use strict';
 
     var currentLength = 0
-    var branchNameInput = document.getElementsByName('value')[0];
+    var branchNameInput = document.getElementsByName('value')[3];
     var div = document.createElement('div');
-    var maxLength = 38;
+    var maxLength = 80;
 
     branchNameInput.addEventListener("input", updateLength);
 
     div.innerHTML = "<div id='branchNameLength'></div>";
-    document.getElementsByName('parameter')[0].appendChild(div);
+    document.getElementsByName('parameter')[3].appendChild(div);
 
     function updateLength(e) {
         currentLength = e.target.value.length;

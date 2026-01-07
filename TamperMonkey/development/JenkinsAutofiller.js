@@ -37,18 +37,14 @@
     const branchName = params.get('branchName');
 
     if (branchName) {
-        const branchParts = branchName.split("-");
-        const featureName = branchParts.length == 4 ? branchParts.at(-1) : "";
-        const ticketNumber = branchParts.length == 4 ? branchParts.at(-2) : "";
-        const targetBranch = targetBranchMap.has(branchParts.at(0)) ? targetBranchMap.get(branchParts.at(0)) : "develop";
-        const teamName = teamNameMap.has(branchParts.at(1)) ? teamNameMap.get(branchParts.at(1)) : "";
-
+        const [targetBranch, teamName, ticketNumber, ...rest] = branchName.split("-");
+        const featureName = rest.join("-");
         const dropdowns = document.querySelectorAll("select[name='value']");
         const input = document.querySelectorAll("input[name='value']");
 
         if (dropdowns != 0) {
-            dropdowns[0].value = targetBranch;
-            dropdowns[1].value = teamName;
+            dropdowns[0].value = targetBranchMap.get(targetBranch);
+            dropdowns[1].value = teamNameMap.get(teamName);
         }
 
         if (input.length != 0) {
