@@ -1,0 +1,11 @@
+google-genai==1.57.0
+minio==7.2.20
+mlflow==3.1.11
+openai==2.14.0
+pandas==2.3.3
+plotly==6.5.1
+matplotlib==3.10.8
+python-dotenv==1.2.1
+scikit-learn==1.8.0
+vertexai==1.71.1
+tqdm==4.67.1
