@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Autofill Branch Name
 // @namespace    http://tampermonkey.net/
-// @version      1.1
+// @version      1.2
 // @author       msamson
 // @description  Fill in branch name from query params
 // @match        https://jenkins.omnimed.com/job/CreateFeatureBranch/*
@@ -24,7 +24,7 @@
     const teamNameMap = new Map([
         ["ai", "brainiacs"],
         ["cp", "chillpills"],
-        ["dp", "daftpunks"],
+        ["dp", "daftpunk"],
         ["gk", "gatekeepers"],
         ["qa", "qa"],
         ["req", "requesters"],
