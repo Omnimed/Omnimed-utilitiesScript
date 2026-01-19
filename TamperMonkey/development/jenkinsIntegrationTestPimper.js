@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      6.6
+// @version      6.7
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier, marobert
 // @match        https://jenkins.omnimed.com/*/job/*/*/
@@ -158,6 +158,7 @@ function colorTestTags() {
     colorTestTagForQA('order', qa);
     colorTestTagForQA('file', qa);
     colorTestTagForQA('route', qa);
+	colorTestTagForQA('hl7', qa);
     colorTestTagForQA('labo', qa);
     colorTestTagForQA('push', qa);
 
