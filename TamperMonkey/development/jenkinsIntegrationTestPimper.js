@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jenkins Integration Test List Pimper
 // @namespace    http://tampermonkey.net/
-// @version      6.7
+// @version      6.8
 // @description  Jenkins Integration Test List Pimper
 // @author       mcormier, marobert
 // @match        https://jenkins.omnimed.com/*/job/*/*/
@@ -148,7 +148,15 @@ function colorTestTags() {
 	colorTestTagForQA('timeslotwindow', qa);
 	colorTestTagForQA('waitingroom', qa);
 
-	 //Équipe Requetes et resultats
+    //Équipe portail patient
+	qa = 'Por';
+	colorTestTagForQA('task', qa);
+	colorTestTagForQA('institutioncontact', qa);
+    colorTestTagForQA('crm', qa);
+    colorTestTagForQA('portal', qa);
+	colorTestTagForQA('keycloak', qa);
+
+	//Équipe Requetes et resultats
 	qa = 'Req';
 	colorTestTagForQA('safir', qa);
     colorTestTagForQA('result', qa);
@@ -161,16 +169,7 @@ function colorTestTags() {
 	colorTestTagForQA('hl7', qa);
     colorTestTagForQA('labo', qa);
     colorTestTagForQA('push', qa);
-
-
-    //Équipe portail patient
-	qa = 'Por';
-	colorTestTagForQA('task', qa);
-	colorTestTagForQA('institutioncontact', qa);
-    colorTestTagForQA('crm', qa);
-    colorTestTagForQA('portal', qa);
-	colorTestTagForQA('keycloak', qa);
-
+	
 	//Équipe Médication
 	qa = 'Med';
 	colorTestTagForQA('bff.dsq', qa);
