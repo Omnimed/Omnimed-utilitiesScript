@@ -1,17 +1,10 @@
 // ==UserScript==
 // @name         DLQ Highlighter
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  Highlights DLQs with > 0 messages
 // @author       Antoine Cloutier
-// @match        http://192.168.254.181:8161/admin/queues.jsp
-// @match        http://192.168.254.3:8161/admin/queues.jsp
-// @match        http://192.168.254.2:8161/admin/queues.jsp
-// @match        http://192.168.254.182:8161/admin/queues.jsp
-// @match        http://192.168.0.71:8161/admin/queues.jsp
-// @match        http://192.168.253.10:8161/admin/queues.jsp
-// @match        http://192.168.253.48:8161/admin/queues.jsp
-// @match        http://localhost:8161/admin/queues.jsp
+// @match        http://*/admin/queues.jsp*
 // @grant        none
 // @require https://code.jquery.com/jquery-3.6.0.min.js
 // ==/UserScript==
