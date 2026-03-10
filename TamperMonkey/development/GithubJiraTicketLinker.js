@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Clickable JIRA Keys on GitHub
 // @namespace    https://omnimed.com/
-// @version      1.3
+// @version      1.4
 // @description  Turns DEV-1234 references into clickable links on GitHub titles, PRs, and commits.
 // @author       msamson
 // @match        https://github.com/Omnimed/*
@@ -66,10 +66,10 @@
     }
 
     function replaceNumberWithLink() {
-        const container = document.querySelector('.gh-header-title') ?? document.querySelector('[data-component="PH_Title"]');
+        const container = document.querySelector('.gh-header-title') ?? document.querySelector('[data-component="PH_Title"]').children[1];
         if (!container || container.dataset.linkified === 'true') return;
 
-        const numberNode = container.children[1]; // second child (the "#1234" span)
+        const numberNode = container.children[0]; // second child (the "#1234" span)
         if (!numberNode) return;
 
         const pageUrl = window.location.href;
