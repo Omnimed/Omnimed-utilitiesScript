@@ -1,124 +1,136 @@
 // ==UserScript==
 // @name         Auto-prefix DEV tickets in GitHub PR title
 // @namespace    https://github.com/
-// @version      1.0
-// @description  Ajoute automatiquement les DEV-XXX des commits au début du titre de la PR après clic sur "Create pull request", si aucun DEV- n’est déjà présent
+// @version      2.0
+// @description  Ajoute automatiquement les DEV-XXX des commits au début du titre de la PR sur la page /compare/, si aucun DEV- n'est déjà présent
 // @match        https://github.com/*
 // @grant        none
 // ==/UserScript==
 
-// variables
-const MAX_RETRIES = 5;
-let retryCount = 0;
-let lastUrl = location.href;
+(function () {
+    'use strict';
 
-// ----------------- Détection SPA -----------------
-function onUrlChange() {
-    if (location.href !== lastUrl) {
-      lastUrl = location.href;
-      if (/\/compare\//.test(location.href)) {
-        console.log('[Tampermonkey SPA] URL /compare/... détectée, relance du script.');
-        startScript();
-      }
-    }
-  };
+    let lastUrl = location.href;
+    let alreadyPrefixed = false;
+    let observer = null;
 
-// Hook history.pushState et replaceState
-//const pushState = history.pushState;
-//history.pushState = function() {
-//    pushState.apply(this, arguments);
-//   onUrlChange();
-//};
-
-const replaceState = history.replaceState;
-history.replaceState = function() {
-    replaceState.apply(this, arguments);
-    onUrlChange();
-};
-
-// popstate pour back/forward
-window.addEventListener('popstate', onUrlChange);
-
-// --- Utilitaires ---
-function extractDevTickets(text) {
-    const matches = text.match(/DEV-\d+/gi);
-    return matches ? [...new Set(matches)] : [];
-  };
-
-function getAllCommitTickets() {
-  const tickets = new Set();
-
-    // Tickets Jira liés dans les commits
-    document.querySelectorAll('#commits_bucket a.issue-link').forEach(a => {
-      const txt = a.textContent.trim();
-      if (/DEV-\d+/.test(txt)) tickets.add(txt);
-    });
-
-    // Backup : mentions dans les messages de commit
-    document.querySelectorAll('#commits_bucket a.Link--primary.text-bold').forEach(a => {
-      extractDevTickets(a.textContent).forEach(t => tickets.add(t));
-    });
-
-    return [...tickets];
-  };
-
-function prefixTitleIfNeeded() {
-    const titleInput = document.querySelector('#pull_request_title');
-    if (!titleInput) return;
-
-    const currentTitle = titleInput.value;
-
-    // Récupère tous les DEV-XXX dans le titre existant
-    const existingTickets = new Set(currentTitle.match(/DEV-\d+/gi) || []);
-
-    // Récupère tous les tickets DEV-XXX dans les commits
-    const allTickets = getAllCommitTickets();
-
-    // Filtre ceux déjà présents dans le titre
-    console.log(existingTickets, allTickets);
-    const ticketsToAdd = allTickets.filter(t => !existingTickets.has(t));
-
-    if (ticketsToAdd.length === 0) {
-        console.log('[Tampermonkey] Aucun nouveau ticket DEV- à ajouter.');
-        return;
+    // --- Utilitaires ---
+    function extractDevTickets(text) {
+        const matches = (text || '').match(/DEV-\d+/gi);
+        return matches ? [...new Set(matches.map(m => m.toUpperCase()))] : [];
     }
 
-    // Ajoute les nouveaux tickets au début du titre
-    titleInput.value = `${ticketsToAdd.join(', ')} - ${currentTitle}`;
-    titleInput.dispatchEvent(new Event('input', { bubbles: true }));
-    console.log(`[Tampermonkey] Tickets ajoutés au titre : ${ticketsToAdd.join(', ')}`);
-};
+    function getAllCommitTickets() {
+        const tickets = new Set();
 
-  // --- Observation du clic sur le bouton "Create pull request" ---
-function waitForButton() {
-    const button = document.querySelector('button.js-details-target.btn-primary.btn');
-    if (!button) {
-      if (retryCount < MAX_RETRIES) {
-        retryCount++;
-        console.log(`[Tampermonkey] Bouton non trouvé (tentative ${retryCount}/${MAX_RETRIES})…`);
-        setTimeout(waitForButton, 1000);
-      } else {
-        console.warn('[Tampermonkey] Bouton non trouvé après 5 tentatives. Abandon.');
-      }
-      return;
+        // Tickets Jira liés (issue-link ou hovercard issue)
+        document.querySelectorAll(
+            '#commits_bucket a.issue-link, #commits_bucket a[data-hovercard-type="issue"]'
+        ).forEach(a => {
+            extractDevTickets(a.textContent).forEach(t => tickets.add(t));
+        });
+
+        // Backup : titres de commits (ancien et nouveau markup)
+        document.querySelectorAll(
+            '#commits_bucket a.Link--primary, #commits_bucket a.markdown-title, #commits_bucket .commit-message a'
+        ).forEach(a => {
+            extractDevTickets(a.textContent).forEach(t => tickets.add(t));
+        });
+
+        // Dernier recours : scan complet du bucket
+        if (tickets.size === 0) {
+            const bucket = document.querySelector('#commits_bucket');
+            if (bucket) extractDevTickets(bucket.textContent).forEach(t => tickets.add(t));
+        }
+
+        return [...tickets];
     }
 
-    console.log('[Tampermonkey] Bouton "Create pull request" trouvé.');
+    function findTitleInput() {
+        return document.querySelector('#pull_request_title')
+            || document.querySelector('input[name="pull_request[title]"]')
+            || document.querySelector('input[aria-label="Title"][type="text"]')
+            || document.querySelector('input[placeholder*="Title" i][type="text"]');
+    }
 
-    button.addEventListener('click', () => {
-      console.log('[Tampermonkey] Clic détecté sur "Create pull request". Surveillance du champ titre...');
-      const titleInput = document.querySelector('#pull_request_title');
-      if (titleInput) {
-          console.log('[Tampermonkey] Champ titre détecté, traitement en cours...');
-          prefixTitleIfNeeded();
-      }
+    function prefixTitleIfNeeded() {
+        if (alreadyPrefixed) return;
+
+        const titleInput = findTitleInput();
+        if (!titleInput) return;
+
+        const bucket = document.querySelector('#commits_bucket');
+        if (!bucket || bucket.querySelectorAll('a').length === 0) return;
+
+        const currentTitle = titleInput.value || '';
+        const existingTickets = new Set(extractDevTickets(currentTitle));
+        const allTickets = getAllCommitTickets();
+        const ticketsToAdd = allTickets.filter(t => !existingTickets.has(t));
+
+        if (allTickets.length === 0) return; // commits pas encore chargés
+
+        if (ticketsToAdd.length === 0) {
+            console.log('[Tampermonkey] Aucun nouveau ticket DEV- à ajouter.');
+            alreadyPrefixed = true;
+            return;
+        }
+
+        titleInput.value = `${ticketsToAdd.join(', ')} - ${currentTitle}`;
+        titleInput.dispatchEvent(new Event('input', { bubbles: true }));
+        titleInput.dispatchEvent(new Event('change', { bubbles: true }));
+        console.log(`[Tampermonkey] Tickets ajoutés au titre : ${ticketsToAdd.join(', ')}`);
+        alreadyPrefixed = true;
+    }
+
+    function isComparePage() {
+        return /\/compare\//.test(location.href);
+    }
+
+    function startObserver() {
+        if (observer) {
+            observer.disconnect();
+            observer = null;
+        }
+        alreadyPrefixed = false;
+
+        if (!isComparePage()) return;
+
+        console.log('[Tampermonkey] Observation de la page /compare/...');
+
+        // Tentative immédiate (form déjà ouvert)
+        prefixTitleIfNeeded();
+
+        // Sinon : attendre que le champ titre apparaisse via React
+        observer = new MutationObserver(() => {
+            if (alreadyPrefixed) {
+                observer.disconnect();
+                observer = null;
+                return;
+            }
+            prefixTitleIfNeeded();
+        });
+
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // --- Détection SPA ---
+    function onUrlChange() {
+        if (location.href !== lastUrl) {
+            lastUrl = location.href;
+            console.log('[Tampermonkey SPA] URL changée:', lastUrl);
+            startObserver();
+        }
+    }
+
+    ['pushState', 'replaceState'].forEach(method => {
+        const orig = history[method];
+        history[method] = function () {
+            orig.apply(this, arguments);
+            onUrlChange();
+        };
     });
-};
+    window.addEventListener('popstate', onUrlChange);
 
-// ----------------- Lancement -----------------
-function startScript(){
-    console.log('[Tampermonkey] Démarrage du script...');
-    waitForButton();
-  };
-
-if (/\/compare\//.test(location.href)) {startScript()};
+    // --- Lancement ---
+    startObserver();
+})();
