@@ -13,7 +13,7 @@
 /* eslint-env jquery */
 
 $(document).ready(function() {
-    $(`<style type='text/css'>
+	$(`<style type='text/css'>
 .tagname > a[class^="cuke"] { color: white !important; font-weight: bold; text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3); line-height: 1.5;}
 .tagname:has(.cukeDos) { background-color: #0000FFAA !important; } /* blue */
 .tagname:has(.cukeMed) { background-color: #000000AA !important; } /* black */
@@ -21,14 +21,15 @@ $(document).ready(function() {
 .tagname:has(.cukeMad) { background-color: #D8780DAA !important; } /* orange */
 .tagname:has(.cukePor) { background-color: #008000AA !important; } /* green */
 .tagname:has(.cukeInt) { background-color: #8B0000AA !important; } /* darkred */
+.tagname:has(.cukeBra) { background-color: #E91E8CAA !important; } /* pink */
 .tagname:has(.cukeAll) { background-color: #808080AA !important; } /* grey */
  </style>`).appendTo("head");
 });
 
 function colorCucumberTagForQA(tag, qa) {
-    var tagged = '.tagname > a:contains(' + tag + ')';
+	var tagged = '.tagname > a:contains(' + tag + ')';
 	if ($(tagged).length !== 0) {
-		$(tagged).removeClass('cukeDos cukeReq cukeMed cukeMad cukePor cukeInt');
+		$(tagged).removeClass('cukeDos cukeReq cukeMed cukeMad cukePor cukeInt cukeBra');
 		$(tagged).addClass('cuke' + qa);
 	} else {
 		console.warn('Cucumber tag ' + tag + ' does not exists');
@@ -76,7 +77,7 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('SalleAttente', qa);
 	colorCucumberTagForQA('Omnidesk', qa);
 
-	 //Équipe Requetes et resultats
+	//Équipe Requetes et resultats
 	qa = 'Req';
 	colorCucumberTagForQA('Requete', qa);
 	colorCucumberTagForQA('Ramq', qa);
@@ -87,7 +88,7 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('RevisionResultat', qa);
 	colorCucumberTagForQA('CourrielResultat', qa);
 
-    //Équipe portail patient
+	//Équipe portail patient
 	qa = 'Por';
 	colorCucumberTagForQA('AdministrationDemande', qa);
 	colorCucumberTagForQA('Portail', qa);
@@ -128,10 +129,15 @@ function colorCucumberTags() {
 	colorCucumberTagForQA('@Compte', qa);
 	colorCucumberTagForQA('@RecherchePatient', qa);
 
+	//Équipe Brainiac
+	qa = 'Bra';
+	//----SessionOnimed----
+	colorCucumberTagForQA('AssistantRedaction', qa);
+
 	//Équipe Dossier
-    //Pour un tag Outil qui est aussi contenu dans CentreAdmin, je dois le placer après
-    qa = 'Dos';
-    colorCucumberTagForQA('Outil', qa);
+	//Pour un tag Outil qui est aussi contenu dans CentreAdmin, je dois le placer après
+	qa = 'Dos';
+	colorCucumberTagForQA('Outil', qa);
 
 	//All
 	qa = 'All'
