@@ -19,7 +19,6 @@
 
   const css = `
     html body ${DIALOG_SELECTOR} {
-      width: 1100px !important;
       max-width: calc(100vw - 48px) !important;
       height: auto !important;
       max-height: calc(100vh - 88px) !important;
