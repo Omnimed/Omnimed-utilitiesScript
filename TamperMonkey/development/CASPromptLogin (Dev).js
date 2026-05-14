@@ -11,7 +11,7 @@
 
 $('#passwordSection').hide();
 
-var users = ['loki01','kenobi01','skyluk01','jinqui01'].reverse(); //'jinqui01','orglei','c3p0','superuser01','amipad'
+var users = ['loki01','kenobi01','skyluk01','jinqui01','orglei'].reverse(); //'c3p0','superuser01','amipad'
 
 var userDiv = $('<div style="display: flex; flex-wrap: wrap; gap: 25px; padding-bottom: 15px;">');
 $('#fm1').prepend(userDiv);
