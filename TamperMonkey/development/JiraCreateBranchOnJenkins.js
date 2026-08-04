@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Hijack Create Branch Link
 // @namespace    http://tampermonkey.net/
-// @version      1.4
+// @version      1.5
 // @description  Hijack Jira's Create Branch link, generate branch name, and pass to Jenkins
 // @author       msamson
 // @match        https://omnimedjira.atlassian.net/*
@@ -53,10 +53,25 @@
         return TEAM_TAG_MAP[component] || component;
     }
 
+    // "GitHub" is kept untranslated by Atlassian's localized UI strings, so a
+    // plain substring swap works no matter what language Jira is displayed in.
+    function relabelGithubToJenkins(el) {
+        for (const node of el.childNodes) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                if (node.textContent.includes('GitHub')) {
+                    node.textContent = node.textContent.replace(/GitHub/g, 'Jenkins');
+                }
+            } else {
+                relabelGithubToJenkins(node);
+            }
+        }
+    }
+
     function hijackCreateBranchLink() {
         const link = document.querySelector(SELECTOR_CREATE_BRANCH);
         if (!link || link.classList.contains('hijacked')) return;
 
+        relabelGithubToJenkins(link);
         link.classList.add('hijacked');
         link.addEventListener('click', function (e) {
             e.preventDefault();
