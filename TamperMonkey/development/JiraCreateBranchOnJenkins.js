@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Jira Hijack Create Branch Link
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  Hijack Jira's Create Branch link, generate branch name, and pass to Jenkins
 // @author       msamson
 // @match        https://omnimedjira.atlassian.net/*
@@ -19,18 +19,24 @@
     const SELECTOR_FOR_TEAM = '[data-testid="issue-field-team.ui.view-team-name"]';
     const SELECTOR_FOR_TITLE = '[data-testid="issue.views.issue-base.foundation.summary.heading"]';
 
-    const JENKINS_URL_BASE = "https://jenkins.omnimed.com/job/CreateFeatureBranch/build?delay=0sec&branchName=";
-    const TEAM_TAG_MAP = {
-        "Brainiacs": "ai",
-        "Chill Pills": "cp",
-        "DaftPunk": "dp",
-        "ETL": "etl",
-        "Gate Keepers": "gk",
-        "QA": "qa",
-        "Requesters": "req",
-        "Starship Troopers": "st",
-        "Time Twisters": "tt",
+    const JENKINS_URL_BASE = "https://jenkins.omnimed.com/job/CreateFeatureBranch/build?delay=0sec&";
+    const FEATURE_NAME_MAX_LENGTH = 67;
 
+    // Values must match the <option> values of the "teamName" dropdown on the
+    // Jenkins CreateFeatureBranch parameterized-build page (verified live:
+    // brainiacs, chillpills, daftpunk, ETL, qa, requesters, starshiptroopers,
+    // gatekeepers, timetwisters — no other values are valid).
+    const TEAM_TAG_MAP = {
+        "Brainiacs": "brainiacs",
+        "Chill Pills": "chillpills",
+        "Chill Bills": "chillpills", // Chill Pills/Chill Bills aren't officially split in Jenkins yet; both use chillpills
+        "DaftPunk": "daftpunk",
+        "ETL": "ETL",
+        "Gate Keepers": "gatekeepers",
+        "QA": "qa",
+        "Requesters": "requesters",
+        "Starship Troopers": "starshiptroopers",
+        "Time Twisters": "timetwisters",
     };
 
     function kebabify(text) {
@@ -41,7 +47,7 @@
                    .replace(/-+/g, '-');
     }
 
-    function getTeamTagFromComponent() {
+    function getTeamNameFromComponent() {
         const componentElem = document.querySelector(SELECTOR_FOR_TEAM);
         const component = componentElem?.innerText.trim();
         return TEAM_TAG_MAP[component] || component;
@@ -58,15 +64,23 @@
 
             const issueKey = document.querySelector(SELECTOR_FOR_ISSUE)?.innerText.trim();
             const title = document.querySelector(SELECTOR_FOR_TITLE)?.innerText.trim();
-            const teamTag = getTeamTagFromComponent();
+            const teamName = getTeamNameFromComponent();
 
-            if (!issueKey || !title || !teamTag) {
-                alert("Missing required Jira fields." + issueKey + " " + title + " " + teamTag);
+            if (!issueKey || !title || !teamName) {
+                alert("Missing required Jira fields." + issueKey + " " + title + " " + teamName);
+                return;
             }
 
             const ticketNumber = issueKey.split('-')[1]; // Get just the number
-            const branchName = `fd-${teamTag}-${ticketNumber}-${kebabify(title)}`;
-            const jenkinsUrl = `${JENKINS_URL_BASE}${encodeURIComponent(branchName)}`;
+            const featureName = kebabify(title).slice(0, FEATURE_NAME_MAX_LENGTH);
+
+            const params = new URLSearchParams({
+                teamName: teamName,
+                ticketNumber: ticketNumber,
+                featureName: featureName,
+            });
+
+            const jenkinsUrl = `${JENKINS_URL_BASE}${params.toString()}`;
 
             window.open(jenkinsUrl, "_blank");
         });
