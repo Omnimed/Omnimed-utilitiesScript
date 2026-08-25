@@ -60,16 +60,16 @@ if [ ! -d "/home/jovyan/.local/share/uv/python/cpython-3.12.11-linux-x86_64-gnu"
   uv run -p $venv_folder/bin/python3 -m ipykernel install --name python3.12.11 --user
 fi
 
-# Install all the default libs.
-# uv pip install -p $venv_folder/bin/python3 \
-# google-genai==1.57.0 \
-# minio==7.2.20 \
-# mlflow==3.1.1 \
-# openai==2.14.0 \
-# pandas==2.3.3 \
-# plotly==6.5.1 \
-# matplotlib==3.10.8 \
-# python-dotenv==1.2.1 \
-# scikit-learn==1.8.0 \
-# vertexai==1.71.1 \
-# tqdm==4.67.1
+Install all the default libs.
+uv pip install -p $venv_folder/bin/python3 \
+google-genai==1.57.0 \
+minio==7.2.20 \
+mlflow==3.1.1 \
+openai==2.14.0 \
+pandas==2.3.3 \
+plotly==6.5.1 \
+matplotlib==3.10.8 \
+python-dotenv==1.2.1 \
+scikit-learn==1.8.0 \
+vertexai==1.71.1 \
+tqdm==4.67.1
