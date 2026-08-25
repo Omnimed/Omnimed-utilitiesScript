@@ -73,3 +73,5 @@ python-dotenv==1.2.1 \
 scikit-learn==1.8.0 \
 vertexai==1.71.1 \
 tqdm==4.67.1
+
+return 0
