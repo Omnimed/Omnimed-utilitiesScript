@@ -1,12 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 #
 # JupyterHub post-start provisioning (Oracle client, R env vars, uv, Python kernel).
 #
 # This script MUST always exit 0: the calling hook aborts the container startup
 # on any non-zero status. Every step is best-effort and only warns on failure.
+#
+# POSIX sh only — the lifecycle hook runs it through `curl ... | sh` (dash on the
+# jupyter images), so the shebang above is never honoured and bashisms would
+# abort the whole script.
 
+# Both matter: the hook could invoke us as `sh -e` / `sh -u`. No pipefail here —
+# it is a bashism dash aborts on, and it is off by default anyway.
 set +e
-set +o pipefail
 set +u
 
 log() { printf '%s\n' "$*"; }
@@ -14,9 +19,9 @@ warn() { printf 'WARN: %s\n' "$*" >&2; }
 
 # Safety net: exit 0 whatever happens below — a failing last command, an
 # unexpected `set -e`, or a signal sent by a hook timeout. Must be executed
-# (`bash script.sh`), not sourced, otherwise this would exit the parent shell.
+# (`sh script.sh`), not sourced, otherwise this would exit the parent shell.
 finish() {
-    local status=$?
+    status=$?
     if [ "$status" -ne 0 ]; then
         warn "script ended with status ${status}, forcing 0"
     fi
